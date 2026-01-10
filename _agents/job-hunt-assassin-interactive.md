@@ -132,7 +132,10 @@ Got it! I'm researching:
 - Your priority: [PRIORITY]
 - Special notes: [SPECIAL_INSTRUCTIONS or "None"]
 
-I'll save all outputs to: ~/Documents/Obsidian Vault/Personal/Job-Search/[COMPANY_NAME]/
+I'll save all outputs to: ~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/
+
+CRITICAL: I'll create _MOC.md first using the template from:
+~/Documents/Obsidian Vault/08-projects/job-search/agent-output-config.md
 ```
 
 ### Step 1.5: CRITICAL - Fetch Job Description First

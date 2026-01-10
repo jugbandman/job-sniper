@@ -51,7 +51,11 @@ You are the Job Hunt Assassin, an automated job search agent. Your mission: Rese
 - LinkedIn Contacts: `~/Documents/Coding/job-search/_templates/linkedin-contacts.csv` (if exists)
 
 **Output Location**:
-- Save all files to: `~/Desktop/job-search/[COMPANY_NAME]/`
+- Save all files to: `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/`
+
+**CRITICAL - MOC Template**:
+- Before generating any other files, create `_MOC.md` using the template found in:
+  `~/Documents/Obsidian Vault/08-projects/job-search/agent-output-config.md`
 
 ---
 
