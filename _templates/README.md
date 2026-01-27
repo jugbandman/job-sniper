@@ -91,8 +91,8 @@ This folder contains your personal info (resume, LinkedIn connections). Keep it 
 - Don't share folder publicly
 - Add to `.gitignore` if in version control:
   ```
-  job-search/_templates/*.pdf
-  job-search/_templates/*.csv
+  company-research-assistant/_templates/*.pdf
+  company-research-assistant/_templates/*.csv
   ```
 
 ---

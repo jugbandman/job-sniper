@@ -1,24 +1,36 @@
-# Job Hunt Assassin 🎯
+# Company Research Assistant
 
-**Automated Job Search Agent - Treat Job Hunting Like Enterprise Sales**
+**General-purpose company intelligence platform. Job search is one use case.**
+
+Formerly "Job Hunt Assassin" / "job-sniper". Renamed Jan 2026 to reflect broader scope.
 
 ---
 
 ## What Is This?
 
-An AI-powered agent that researches companies, finds hiring managers, analyzes your network, and generates customized application materials. Built from the Kilo Code job exploration (which created 17 files, 65,000 words, 444KB of research in ~2 hours).
+An AI-powered agent system for company research across multiple use cases ("lenses"):
+
+| Lens | Purpose |
+|------|---------|
+| **Job Search** | Find roles, generate materials, track applications |
+| **Prospect Research** | Research companies for sales (Remix Revenue, HyperAdaptive) |
+| **Market Intel** | Track companies, funding rounds, competitive landscape |
+| **General** | Any company deep dive for any purpose |
 
 **Philosophy**: Don't be another resume in the pile. Be the candidate who did more research than the hiring manager.
 
 ---
 
-## Quick Start (First Time Setup - 5 Minutes)
+## Quick Start
 
 ### 1. You Already Have:
-- ✅ **Resume**: `_templates/Andrew Carlson Resume 2025.pdf`
-- ✅ **Cover Letter Template**: `_templates/About Andy Carlson Intro 2025.pdf`
-- ✅ **Agent**: `_agents/job-hunt-assassin-main.md`
-- ✅ **Usage Guide**: `USAGE_GUIDE.md`
+- Resume: `_templates/Andrew Carlson Resume 2025.pdf`
+- Cover Letter Template: `_templates/About Andy Carlson Intro 2025.pdf`
+- Agent (single job): `_agents/job-search/main.md`
+- Agent (batch): `_agents/job-search/batch.md`
+- Agent (interactive): `_agents/job-search/interactive.md`
+- Agent (multi-job compare): `_agents/job-search/multi-job.md`
+- Usage Guide: `USAGE_GUIDE.md`
 
 ### 2. Optional but Recommended:
 - ❓ **Export LinkedIn Contacts**:
@@ -133,31 +145,37 @@ We built this agent by creating comprehensive research for the Kilo Code AE role
 ## Files in This Repo
 
 ```
-~/job-search/
+company-research-assistant/
 ├── README.md (this file)
 ├── USAGE_GUIDE.md (detailed instructions)
+├── QUICK_START.md
+├── job-applications-tracker.csv
 │
-├── _templates/ (your personal materials)
-│   ├── Andrew Carlson Resume 2025.pdf ✅
-│   ├── About Andy Carlson Intro 2025.pdf ✅
-│   ├── linkedin-contacts.csv ❓ (export from LinkedIn)
-│   └── README.md (template instructions)
+├── _templates/
+│   ├── Andrew Carlson Resume 2025.pdf
+│   ├── About Andy Carlson Intro 2025.pdf
+│   ├── resumes/ (multiple resume versions)
+│   ├── cover-letter-style-guide.md
+│   ├── resume-tldr-template.md
+│   ├── linkedin-contacts.csv (export from LinkedIn)
+│   └── README.md
 │
-├── _agents/ (agent prompts)
-│   └── job-hunt-assassin-main.md (main agent)
+├── _agents/
+│   ├── AGENT-WORKFLOW-IMPROVEMENTS.md
+│   ├── core/ (shared research capabilities)
+│   │   └── company-research.md (general company research - future)
+│   └── job-search/ (job search lens)
+│       ├── batch.md (batch URL processing)
+│       ├── interactive.md (Q&A mode)
+│       ├── main.md (single job deep dive)
+│       └── multi-job.md (compare roles at same company)
 │
-└── [company-name]/ (created per job)
-    ├── company-intelligence.md
-    ├── hiring-managers.md
-    ├── job-analysis-fit-matrix.md
-    ├── network-paths.md (if LinkedIn CSV exists)
-    ├── positioning-strategy.md
+└── Output goes to Obsidian:
+    03-Projects/job-search/opportunities/{company}-{role}/
+    ├── _MOC.md (source of truth, frontmatter syncs to Notion)
     ├── cover-letter.md
-    ├── linkedin-messages.md
-    ├── email-sequence.md
-    ├── interview-prep.md (if Deep)
-    ├── 30-60-90-day-plan.md (if Deep + sales role)
-    └── competitive-intelligence.md (if Deep)
+    ├── resume-tldr.md
+    └── research-notes.md
 ```
 
 ---

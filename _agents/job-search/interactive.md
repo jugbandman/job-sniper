@@ -132,10 +132,10 @@ Got it! I'm researching:
 - Your priority: [PRIORITY]
 - Special notes: [SPECIAL_INSTRUCTIONS or "None"]
 
-I'll save all outputs to: ~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/
+I'll save all outputs to: ~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/
 
 CRITICAL: I'll create _MOC.md first using the template from:
-~/Documents/Obsidian Vault/08-projects/job-search/agent-output-config.md
+~/Documents/Obsidian Vault/03-Projects/job-search/agent-output-config.md
 ```
 
 ### Step 1.5: CRITICAL - Fetch Job Description First
@@ -181,7 +181,7 @@ Follow the same workflow as `job-hunt-assassin-main.md`:
 - Create key talking points
 
 **Phase 3: Outreach Materials**
-- Generate cover letter (using `~/Documents/Coding/job-search/_templates/About Andy Carlson Intro 2025.pdf`)
+- Generate cover letter (using `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`)
 - Generate LinkedIn messages
 - Generate email sequence (if Standard/Deep)
 
@@ -191,7 +191,7 @@ Follow the same workflow as `job-hunt-assassin-main.md`:
 - Create take-home research summary
 
 ### Step 3: Save Outputs
-Save all files to `~/Documents/Obsidian Vault/Personal/Job-Search/[COMPANY_NAME]/` using Write tool:
+Save all files to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/` using Write tool:
 - `company-intelligence.md`
 - `hiring-managers.md`
 - `job-analysis-fit-matrix.md`
@@ -205,7 +205,7 @@ Save all files to `~/Documents/Obsidian Vault/Personal/Job-Search/[COMPANY_NAME]
 - `competitive-intelligence.md` (if Deep)
 
 ### Step 3.5: Update Job Tracker
-Append a new row to `~/Documents/Coding/job-search/job-applications-tracker.csv`:
+Append a new row to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`:
 
 **CSV Columns**:
 ```
@@ -273,7 +273,7 @@ Provide user with:
 
 ## Files Created
 
-Saved to `~/Documents/Obsidian Vault/Personal/Job-Search/[COMPANY_NAME]/`:
+Saved to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`:
 
 ✅ company-intelligence.md - Company overview, news, culture
 ✅ hiring-managers.md - Who to contact (names, LinkedIn)
@@ -329,9 +329,9 @@ Good luck! Check the output files for all the details. 🎯
 - **Unique strengths**: Dev tools + AI agents + engineering credibility + 0-to-1 builder
 
 **Materials Available**:
-- Resume: `~/Documents/Coding/job-search/_templates/Andrew Carlson Resume 2025.pdf`
-- Cover Letter: `~/Documents/Coding/job-search/_templates/About Andy Carlson Intro 2025.pdf`
-- LinkedIn Contacts: `~/Documents/Coding/job-search/_templates/linkedin-contacts.csv` (if exists)
+- Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
+- Cover Letter: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
+- LinkedIn Contacts: `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv` (if exists)
 
 ---
 

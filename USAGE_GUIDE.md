@@ -26,7 +26,7 @@ The Job Hunt Assassin is an automated agent that researches companies, finds hir
 3. **Copy** the entire prompt (from "AGENT INSTRUCTIONS" to end)
 4. **Paste** into Claude Code or Claude.ai
 5. **Wait** 30-45 minutes (agent runs automatically)
-6. **Review** outputs in `~/job-search/acme-saas/`
+6. **Review** outputs in `~/Documents/Coding/company-research-assistant/acme-saas/`
 
 ---
 
@@ -79,11 +79,11 @@ The Job Hunt Assassin is an automated agent that researches companies, finds hir
 ## Prerequisites
 
 ### Required (You Have These)
-- ✅ Resume: `~/job-search/_templates/Andrew Carlson Resume 2025.pdf`
-- ✅ Cover Letter Template: `~/job-search/_templates/About Andy Carlson Intro 2025.pdf`
+- ✅ Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
+- ✅ Cover Letter Template: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
 
 ### Optional (Enhances Output)
-- ❓ LinkedIn Contacts CSV: `~/job-search/_templates/linkedin-contacts.csv`
+- ❓ LinkedIn Contacts CSV: `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv`
   - Enables network path analysis (warm intro finding)
   - Export from LinkedIn: Settings → Data Privacy → Get a copy of your data → Connections
 - ❓ Additional cover letter examples by role type (if you have different templates for AE vs VP Sales vs RevOps)
@@ -98,7 +98,7 @@ The Job Hunt Assassin is an automated agent that researches companies, finds hir
 4. **Request Archive** (takes ~10 minutes)
 5. LinkedIn emails you a ZIP file
 6. Extract `Connections.csv`
-7. Save to `~/job-search/_templates/linkedin-contacts.csv`
+7. Save to `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv`
 
 **Format Expected**:
 ```csv
@@ -114,7 +114,7 @@ John,Doe,john@example.com,Acme Corp,VP Sales,01 Jan 2023
 After running the agent, you'll have a folder like this:
 
 ```
-~/job-search/acme-saas/
+~/Documents/Coding/company-research-assistant/acme-saas/
 ├── company-intelligence.md          # Company overview, news, culture
 ├── hiring-managers.md                # Who to contact, titles, LinkedIn
 ├── job-analysis-fit-matrix.md        # Requirements mapped to your experience
@@ -274,7 +274,7 @@ YOUR_PRIORITY: equity + leadership + culture
 ### Adding New Cover Letter Templates
 If you have different cover letter styles by role:
 ```
-~/job-search/_templates/
+~/Documents/Coding/company-research-assistant/_templates/
 ├── Andrew Carlson Resume 2025.pdf
 ├── About Andy Carlson Intro 2025.pdf (default)
 ├── cover-letter-AE.md (for AE roles)
@@ -292,7 +292,7 @@ etc.
 
 ### Updating Resume
 1. Export new resume to PDF
-2. Save to `~/job-search/_templates/Andrew Carlson Resume 2025.pdf` (replace old)
+2. Save to `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf` (replace old)
 3. Agent will use new version on next run
 
 ---

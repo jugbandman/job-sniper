@@ -9,7 +9,7 @@
 1. **Fill in the inputs below** (Job URL, company name, research depth)
 2. **Copy this entire prompt** (from "AGENT INSTRUCTIONS" to end)
 3. **Paste into Claude Code** (or Claude.ai)
-4. **Agent will execute** and save all outputs to `~/Desktop/job-search/[COMPANY_NAME]/`
+4. **Agent will execute** and save all outputs to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`
 
 ---
 
@@ -46,16 +46,16 @@ You are the Job Hunt Assassin, an automated job search agent. Your mission: Rese
 - **Unique strengths**: Dev tools sales + AI agent sales + engineering credibility + 0-to-1 builder
 
 **Materials Available**:
-- Resume: `~/Documents/Coding/job-search/_templates/Andrew Carlson Resume 2025.pdf`
-- Intro/Cover Letter: `~/Documents/Coding/job-search/_templates/About Andy Carlson Intro 2025.pdf`
-- LinkedIn Contacts: `~/Documents/Coding/job-search/_templates/linkedin-contacts.csv` (if exists)
+- Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
+- Intro/Cover Letter: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
+- LinkedIn Contacts: `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv` (if exists)
 
 **Output Location**:
-- Save all files to: `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/`
+- Save all files to: `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`
 
 **CRITICAL - MOC Template**:
 - Before generating any other files, create `_MOC.md` using the template found in:
-  `~/Documents/Obsidian Vault/08-projects/job-search/agent-output-config.md`
+  `~/Documents/Obsidian Vault/03-Projects/job-search/agent-output-config.md`
 
 ---
 
@@ -129,7 +129,7 @@ Launch these agents in parallel using the Task tool:
 ### Phase 2: Network Analysis (Standard & Deep Only)
 
 **Agent 4: Network Analyzer** (if LinkedIn CSV exists)
-- Parse `~/Documents/Coding/job-search/_templates/linkedin-contacts.csv`
+- Parse `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv`
 - For each hiring manager found in Phase 1:
   - Search contacts for matches (1st/2nd/3rd degree)
   - Identify warm intro paths
@@ -148,7 +148,7 @@ Launch these agents in parallel using the Task tool:
 ### Phase 4: Outreach Materials (All Depths)
 
 **Agent 5: Outreach Generator**
-- Read Andy's cover letter template: `~/Documents/Coding/job-search/_templates/About Andy Carlson Intro 2025.pdf`
+- Read Andy's cover letter template: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
 - Generate customized cover letter:
   - Use Andy's voice/style from template
   - Incorporate company-specific insights from Phase 1
@@ -192,7 +192,7 @@ Launch these agents in parallel using the Task tool:
 ## File Structure You'll Create
 
 ```
-~/Desktop/job-search/[COMPANY_NAME]/
+~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/
 ├── company-intelligence.md
 ├── hiring-managers.md
 ├── job-analysis-fit-matrix.md
@@ -218,8 +218,8 @@ Launch these agents in parallel using the Task tool:
 5. **Run Phase 3** (Positioning Strategy) - sequential, needs Phase 1-2 data
 6. **Run Phase 4** (Outreach Materials) - sequential, needs Phase 3 data
 7. **If Deep**: Run Phase 5 (Interview Prep) and Phase 6 (Competitive Intel)
-8. **Save all outputs** to `~/Desktop/job-search/[COMPANY_NAME]/` using Write tool
-9. **Update job tracker** - Append row to `~/Documents/Coding/job-search/job-applications-tracker.csv`
+8. **Save all outputs** to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/` using Write tool
+9. **Update job tracker** - Append row to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`
 10. **Return summary** of what was created and key findings
 
 ---
@@ -228,7 +228,7 @@ Launch these agents in parallel using the Task tool:
 
 After saving all research files, append a new row to the job applications tracker CSV.
 
-**Tracker Location**: `~/Documents/Coding/job-search/job-applications-tracker.csv`
+**Tracker Location**: `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`
 
 **CSV Columns** (in order):
 ```
@@ -314,7 +314,7 @@ Acme SaaS,Head of Sales,Remote US,https://acme.com/jobs/123,Not yet applied,Rese
 **Step 2**: Announce your execution plan:
 - "I'm running [Quick/Standard/Deep] research for [COMPANY_NAME]"
 - "I'll launch [X] agents in parallel, then run [Y] sequential phases"
-- "All outputs will be saved to ~/Desktop/job-search/[COMPANY_NAME]/"
+- "All outputs will be saved to ~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/"
 
 **Step 3**: Execute and report back with:
 - Summary of key findings (company, hiring manager, fit assessment)

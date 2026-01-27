@@ -264,4 +264,4 @@ When writing cover letters for Andy:
 
 ---
 
-**Reference Cover Letter**: See `/Users/andycarlson/job-search/_templates/sugarcrm-cover-letter-final.md`
+**Reference Cover Letter**: See `~/Documents/Coding/company-research-assistant/_templates/sugarcrm-cover-letter-final.md`

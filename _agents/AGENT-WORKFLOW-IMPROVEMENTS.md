@@ -1,4 +1,69 @@
-# Job Hunt Assassin - Workflow Improvements
+# Company Research Assistant - Workflow Improvements
+
+**Repo renamed**: `job-sniper` → `company-research-assistant` (Jan 2026)
+**Agents restructured**: `_agents/job-search/` for job-specific, `_agents/core/` for shared
+
+---
+
+## Jan 2026: Batch Mode + Multi-Lens Architecture
+
+### What Changed
+- Renamed from "Job Hunt Assassin" / "job-sniper" to "Company Research Assistant"
+- Tool is now a general-purpose company intelligence platform
+- Job search is one "lens" among several (prospect research, market intel, general)
+- Added batch processing mode (`_agents/job-search/batch.md`)
+- Added resume TLDR template (`_templates/resume-tldr-template.md`)
+- Restructured agents into `core/` and `job-search/` directories
+
+### New Workflow Modes
+
+| Mode | Agent | Description |
+|------|-------|-------------|
+| **Batch** | `job-search/batch.md` | Process 1-5 job URLs in one session, lean research |
+| **Interactive** | `job-search/interactive.md` | Q&A mode for single job |
+| **Main** | `job-search/main.md` | Single job deep dive |
+| **Multi-Job** | `job-search/multi-job.md` | Compare roles at same company |
+
+### Token Efficiency (from HyperAdaptive Learnings)
+
+Applied lessons from Jan 23 session that wasted 40% of tokens:
+
+| Principle | Implementation |
+|-----------|---------------|
+| Ask scope first | Before researching, confirm depth needed |
+| Read lean | Extract only required fields from JD |
+| One fetch + ask | One web search per company, summarize, ask if more needed |
+| Don't over-document | Light research = 1 paragraph per company |
+| Check before reading | Don't read duplicates |
+
+**Token budget**: ~500 tokens research + ~300 tokens materials per job in batch mode.
+
+### Obsidian Output Structure
+
+```
+03-Projects/job-search/opportunities/{company}-{role}/
+  _MOC.md        # Source of truth with YAML frontmatter
+  cover-letter.md
+  resume-tldr.md
+  research-notes.md (only for deep research)
+```
+
+### Notion Integration (Future)
+
+- Database ID: `b16f92737cc04fd6b638c4af3996e039`
+- Blocked: Notion MCP not yet configured in Claude Code
+- Plan: Obsidian is source of truth, Notion gets synced from frontmatter
+
+### Future Modes (Not Yet Built)
+
+- **Incremental**: "I applied to Glean today" → updates Obsidian + Notion
+- **Research**: "Check if Figma has roles" → scans careers page
+- **Cleanup**: Triage stale Research/Interested entries
+- **Company Prep**: Quick overview or deep interview prep
+
+---
+
+## Nov 2025: Always Get JD First
 
 **Date**: November 6, 2025
 **Source**: User feedback from SugarCRM application

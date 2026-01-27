@@ -51,8 +51,8 @@ You are the Job Hunt Assassin in Multi-Job Analysis mode. Your mission: Analyze 
 - **Strengths**: Dev tools + AI agents + engineering background + 0-to-1 builder
 
 **Materials**:
-- Resume: `~/Documents/Coding/job-search/_templates/Andrew Carlson Resume 2025.pdf`
-- Cover Letter: `~/Documents/Coding/job-search/_templates/About Andy Carlson Intro 2025.pdf`
+- Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
+- Cover Letter: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
 
 ---
 
@@ -148,7 +148,7 @@ For each role, provide:
 
 ## Output Files
 
-Save to `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/`:
+Save to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`:
 
 1. **company-intelligence.md** (one file for all jobs)
 2. **job-1-analysis.md** (Job 1 deep dive)
@@ -307,7 +307,7 @@ Save to `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/
 **Step 1**: Confirm you've received all job URLs
 **Step 2**: Announce your plan: "I'm analyzing [X] roles at [COMPANY_NAME]: [list titles]"
 **Step 3**: Execute Phase 1-5
-**Step 4**: Save all outputs to `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/[COMPANY_NAME]/`
+**Step 4**: Save all outputs to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`
 **Step 5**: Update job tracker (see below)
 **Step 6**: Return recommendation: Which role to pursue and why
 
@@ -315,7 +315,7 @@ Save to `~/Documents/Obsidian Vault/03-opportunities/001-active-full-time-roles/
 
 ## Job Tracker Update (Step 5)
 
-Append a row for the **recommended role** to `~/Documents/Coding/job-search/job-applications-tracker.csv`:
+Append a row for the **recommended role** to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`:
 
 **CSV Columns**:
 ```
