@@ -95,58 +95,55 @@ You are the Job Hunt Assassin in Batch Mode. Process multiple job URLs efficient
 - Lead with most relevant experience for this role
 
 **2e. Create Obsidian Files**
-Save to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/{company}-{role}/`
+Save to `~/Documents/Obsidian Vault/03-Projects/job-search/applying/{company}-{role}/`
 
 **File 1: `_MOC.md`**
 ```yaml
 ---
+type: opportunity
 company: [Company Name]
 role: [Role Title]
 job_link: [URL]
-company_website: [extracted from JD domain]
-stage: To Apply
 fit_tier: [Tier 1/2/3]
-key_fit_reasons: [2-3 sentences]
-base_salary_range: [from JD or "Not listed"]
-ote_range: [from JD or "Not listed"]
-action_date: [today's date]
-applied_date:
-created: [today's date]
-type: opportunity
-tags:
-  - job-search
-  - opportunity
-  - [tier-1/tier-2/tier-3]
+key_fit_reasons: [2-3 sentences explaining fit]
+resume_template: [IC: Strategic AE | AE: Founding AE | Early-Stage GTM | Leadership: Early Stage | Leadership: Sales Mgr]
+status: ready-to-apply
+researched: [today's date YYYY-MM-DD]
+applied:
+last_contact:
+location: [from JD]
 ---
 
 # [Company] - [Role]
 
-## Quick Assessment
+## Quick Reference
 
-**Fit Tier**: [Tier 1/2/3]
-**Key Fit Reasons**: [2-3 sentences]
+| Field | Value |
+|-------|-------|
+| **Job Link** | [URL] |
+| **Fit** | [Tier 1/2/3] |
+| **Resume Template** | [template name] |
+| **Location** | [location] |
+
+## Why This Role
+
+[2-3 sentences on fit reasons]
 
 ## Job Description Summary
 
-[Brief summary of key requirements and responsibilities]
+[Brief summary of key requirements]
 
-## Status Timeline
+## Files
 
-| Date | Action | Notes |
-|------|--------|-------|
-| [today] | Researched | Batch processing, fit tier assigned |
-
-## Links
-
-- [Job Posting]([URL])
-- [Company Website]([domain])
+- [[cover-letter|Cover Letter]]
+- [[resume-summary|Resume Summary]]
 ```
 
 **File 2: `cover-letter.md`**
 Full cover letter following Andy's style guide.
 
-**File 3: `resume-tldr.md`**
-3-4 sentence customized summary paragraph.
+**File 3: `resume-summary.md`**
+Customized Summary paragraph based on the selected resume template. Read `_templates/resume-tldr-template.md` for the templates.
 
 **2f. Update Tracker CSV**
 Append row to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`
