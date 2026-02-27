@@ -1,0 +1,17 @@
+# Personal config (use user-profile.example.md as template)
+_config/user-profile.md
+
+# Personal materials
+_templates/linkedin-contacts.csv
+_templates/About Andy Carlson Intro 2025.pdf
+_templates/resumes/*.pdf
+_templates/resumes/*.md
+!_templates/resumes/README.md
+_templates/sugarcrm-cover-letter-final.md
+_templates/resume-tldr-template.md
+
+# Job tracker (contains personal pipeline data)
+job-applications-tracker.csv
+
+# OS files
+.DS_Store
