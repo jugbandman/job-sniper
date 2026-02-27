@@ -1,25 +1,20 @@
 # Resume Templates
 
-## DEPRECATED
+Place your resume files here (PDF or markdown). The agents reference these when generating cover letters and positioning strategy.
 
-**These files are outdated.**
+## Multiple Resumes
 
-The current source of truth is:
-```
-/Users/andycarlson/Downloads/Andy Carlson Resume - templates 2026.docx
-```
+If you have different versions for different role types (e.g., leadership vs IC, different industries), put them all here. The setup agent will ask which version to use for which type of role.
 
-This docx contains 5 templates with different Summary tones:
-- IC: Strategic AE
-- AE: Founding AE
-- Early-Stage GTM
-- Leadership: Early Stage
-- Leadership: Sales Mgr
+## Naming Suggestion
 
-See `_templates/resume-tldr-template.md` for the Summary text from each template.
+Use descriptive names so you can tell them apart:
+- `your-name-leadership-resume.pdf`
+- `your-name-ic-resume.pdf`
+- `your-name-technical-resume.md`
 
 ## Workflow
 
-1. Pick the right template based on role type
-2. Export PDF from the docx
-3. Customize Summary if needed for specific opportunity
+1. Pick the right version based on the role type
+2. The agents read the resume path from `_config/user-profile.md`
+3. If you have multiple versions, update user-preferences.md with which version maps to which role type

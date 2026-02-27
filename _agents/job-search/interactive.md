@@ -103,7 +103,7 @@ Examples:
 - "I'm also interviewing at CompanyX, so compare if possible"
 - "I know someone who works there: John Doe"
 - "I'm nervous about the X requirement, help me address that"
-- "Focus on my Swarmia experience, that's most relevant"
+- "Focus on my most relevant previous role"
 
 ```
 [Special instructions here, or type "None"]

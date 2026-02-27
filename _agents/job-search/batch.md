@@ -136,7 +136,7 @@ location: [from JD]
 ```
 
 **File 2: `cover-letter.md`**
-Full cover letter following Andy's style guide.
+Full cover letter following the candidate's style guide.
 
 **File 3: `resume-summary.md`**
 Customized Summary paragraph based on the selected resume template. Read `_templates/resume-tldr-template.md` for the templates.
@@ -173,7 +173,7 @@ After processing all jobs, return a summary table:
 
 ### Tier 1: Strong Match
 - 80%+ of required qualifications met
-- Stage/scope aligns with Andy's experience (early-stage, B2B SaaS, dev tools/AI)
+- Stage/scope aligns with the candidate's experience (early-stage, B2B SaaS, dev tools/AI)
 - Leadership level matches (VP/Head of Sales/Director)
 - Location works (Denver/Boulder or remote)
 - Compensation likely competitive ($200K+ OTE)
@@ -196,9 +196,9 @@ After processing all jobs, return a summary table:
 
 - No em-dashes. Use commas or parentheses
 - No colons in prose. Restructure or use commas
-- Conversational tone, like Andy talks
+- Conversational tone, like the candidate talks
 - No AI patterns ("Here's the thing...", setup-payoff reveals)
-- Lead with traction (Swarmia growth, Resolve pipeline)
+- Lead with traction (reference key metrics from user-profile.md)
 - Specific company names, specific metrics
 - Humble but confident ("helped" not "single-handedly drove")
 - 600-700 words for cover letters

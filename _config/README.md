@@ -8,7 +8,7 @@ This folder contains your personal configuration for Job Sniper. The agents read
 |------|---------|-----------|
 | `user-profile.md` | Your background, target roles, materials paths, output location | Yes |
 | `user-preferences.md` | Writing style, cover letter tone, research depth defaults | Yes (but defaults work fine) |
-| `user-profile.example.md` | Example configuration (Andy Carlson's setup) | No, just a reference |
+| `user-profile.example.md` | Example configuration for reference | No, just a reference |
 
 ## Getting Started
 

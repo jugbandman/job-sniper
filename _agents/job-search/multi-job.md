@@ -206,15 +206,15 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 ## Best Fit: Job 2 - Head of Sales (Score: 92/100)
 
 **Why This Is The Role**:
-1. **Experience Perfect Match**: You've done this exact role at Swarmia (VP Sales, built from $150K→$3M ARR)
-2. **Stage Perfect Match**: Acme is Series B at $10M ARR, Swarmia was Series A when you joined - you know this motion
-3. **Team Building**: Role requires hiring 5 AEs in Year 1 - you just did this at Resolve (hired 4 reps)
+1. **Experience Perfect Match**: You've done this exact role before (reference specific experience from user-profile.md)
+2. **Stage Perfect Match**: Company stage aligns with your prior experience
+3. **Team Building**: Role requires hiring, and you have team-building experience
 4. **Equity Upside**: Head of Sales at Series B = 1-2% equity (vs 0.5-1% for AE) = 2x upside
-5. **Career Trajectory**: This is the promotion you'd want after nailing AE role anyway - skip the intermediate step
+5. **Career Trajectory**: This is the promotion you'd want after nailing AE role anyway
 
 **Gaps to Address**:
-- Enterprise focus (60% of revenue from $100K+ deals) - You have enterprise experience (Scaled Agile: Boeing, Intel) but not as primary focus recently
-- Response: "While my recent roles (Swarmia, Resolve) were mid-market focused, I cut my teeth on enterprise at Scaled Agile ($10M+ portfolio, Fortune 500 accounts). I can sell both."
+- [Identify gaps between your profile and the role requirements]
+- Response: [Draft a positioning statement that addresses the gap using your actual experience]
 
 **Compensation Estimate**:
 - Base: $150-180K
@@ -227,15 +227,15 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 ## Runner-Up: Job 1 - Account Executive (Score: 85/100)
 
 **Why This Could Work**:
-- Lower risk (you've crushed AE roles before)
+- Lower risk (proven track record in similar AE roles)
 - Faster close (easier to hire AE than Head of Sales)
 - Immediate impact (Week 1 productivity)
 
 **Why Not Best Fit**:
-- Title step down (you're Head of Sales now, this is AE)
-- Lower comp (probably $200K-250K OTE vs $300-400K)
-- Lower equity (0.5-1% vs 1-2%)
-- Less scope (you'd be building, not leading)
+- Title step down from current level
+- Lower comp range
+- Lower equity
+- Less scope
 
 **When to Pursue**:
 - If Head of Sales role is filled before you apply
@@ -248,12 +248,11 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 
 **Why Not**:
 - Lateral move (different track, not progression)
-- Lower comp (SE roles usually $180-220K OTE)
-- You're not a technical presales person (you're a closer + leader)
-- Wastes your leadership experience (Swarmia, Resolve)
+- Lower comp range
+- Doesn't leverage your leadership experience
 
 **Only Pursue If**:
-- You want to pivot careers (unlikely)
+- You want to pivot careers
 - Other roles are filled (last resort)
 
 ---
@@ -262,9 +261,9 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 
 ### Immediate Action (Today):
 1. **Apply for Head of Sales** (Job 2)
-   - Use cover letter: `cover-letter-head-of-sales.md`
-   - Position as: "Built this exact motion at Swarmia"
-   - Reference: Acme's recent Series B raise (show you did homework)
+   - Use cover letter tailored to leadership experience
+   - Position as: "Built this exact motion at [your most relevant company]"
+   - Reference: Company's recent milestones (show you did homework)
 
 2. **Network Analysis** (if LinkedIn CSV exists)
    - Find hiring manager for Head of Sales role
