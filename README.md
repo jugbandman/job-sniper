@@ -77,7 +77,7 @@ You paste an agent prompt into Claude Code, the agent reads your config, researc
 | **Standard** | 30-45 min | $1.00-$2.50 | 10 | Strong matches you're excited about |
 | **Deep** | 60+ min | $5-$12 | 12 | Dream jobs, top 1% opportunities |
 
-Cost estimates assume recommended model mix (Haiku for scraping, Sonnet for analysis). See `MODEL-GUIDE.md` for full breakdown and model selection guidance.
+Cost estimates assume API usage with the recommended model mix (Haiku for scraping, Sonnet for analysis). **If you have a Claude Pro or Max subscription, this runs within your existing plan at no additional cost.** See `MODEL-GUIDE.md` for full breakdown and model selection guidance.
 
 ## Output Files
 
