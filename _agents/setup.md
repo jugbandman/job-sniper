@@ -106,18 +106,51 @@ If they provide more resumes:
 
 If they just have one, move to **Step 4: Additional Context**
 
-### Step 4: Additional Context
+### Step 4: LinkedIn Connections
+
+Before the optional extras, check for LinkedIn connections. This is the single highest-impact add-on because it unlocks warm intros to hiring managers.
+
+First, check if `_templates/linkedin-contacts.csv` already exists. If it does, confirm it and move on.
+
+If it doesn't exist:
+
+```
+One thing that makes a huge difference: your LinkedIn connections.
+
+When you apply to a company, the agents can scan your network to find warm intros to the hiring manager, mutual connections, or anyone at the company you already know. Cold applications convert at ~2-5%. Warm intros convert at 10-20x that rate.
+
+Have you exported your LinkedIn connections? If not, it takes 2 minutes:
+
+1. Go to linkedin.com/mypreferences/d/download-my-data
+2. Check "Connections" only
+3. Click "Request archive"
+4. LinkedIn emails you a download link (usually within 10 minutes)
+5. Download the ZIP, extract Connections.csv
+6. Drop the file path here
+
+You can also do this later and drop the CSV in _templates/linkedin-contacts.csv anytime. The agents pick it up automatically.
+
+Have a CSV to import, or skip for now?
+```
+
+If they provide a path:
+- Copy to `_templates/linkedin-contacts.csv`
+- Confirm: "LinkedIn contacts imported. The agents will use these for network analysis on every research run."
+
+If they skip:
+- Note it as a follow-up: "No worries. When you're ready, export from LinkedIn and save to `_templates/linkedin-contacts.csv`. The agents will start using it automatically."
+
+### Step 5: Additional Context
 
 This is where we layer in more depth. Present it as optional, not required.
 
 ```
-Nice, the basics are set. Now I can make the agents even sharper if you have any of these. All optional:
+A few more things that make the agents sharper. All optional:
 
 1. A cover letter you've written (I'll use it as a writing sample to match your voice)
 2. A 30/60/90 day plan or strategy doc from a previous role
 3. A portfolio or portfolio link
-4. LinkedIn contacts CSV (for network/warm-intro analysis)
-5. Any other docs that show how you think or communicate
+4. Any other docs that show how you think or communicate
 
 Drop file paths, links, or just say "skip" to move on.
 ```
@@ -127,12 +160,11 @@ Drop file paths, links, or just say "skip" to move on.
 - **Cover letter/writing sample:** Read it. Extract tone, sentence structure, vocabulary, level of formality, how they tell stories, what they lead with. Use this to populate the Writing Style section of user-preferences.md instead of asking style questions. Note the file in Materials.
 - **30/60/90 plan:** Read it. Note strategic thinking style, how they structure plans, what they prioritize. Store in `_templates/` and reference in Materials. The agents can use this as a template for generating role-specific plans.
 - **Portfolio/portfolio link:** Note the URL or file path in Materials. The agents reference this when writing cover letters and outreach to add credibility.
-- **LinkedIn CSV:** Note the path in Materials. Used for network analysis and warm intro identification.
 - **Other docs:** Read them, summarize what's useful, store in `_templates/` if file-based, note in Materials.
 
-If they skip, move to **Step 5: Fill the Gaps**
+If they skip, move to **Step 6: Fill the Gaps**
 
-### Step 5: Fill the Gaps
+### Step 6: Fill the Gaps
 
 Ask about things NOT on a resume or in uploaded docs. Skip any question already answered by the materials.
 
@@ -167,7 +199,7 @@ Patterns: [notable habits, e.g., "opens with a hook, uses short paragraphs, ends
 Want me to use this as your style baseline, or tweak anything?
 ```
 
-### Step 6: Copy Materials to Templates
+### Step 7: Copy Materials to Templates
 
 For each file the user provided that's NOT already in `_templates/`:
 
@@ -183,7 +215,7 @@ Copied to _templates/:
 - [plan-filename] (30/60/90 template)
 ```
 
-### Step 7: Generate Config Files
+### Step 8: Generate Config Files
 
 Based on everything collected (resume extraction + additional docs + gap questions), create two files:
 
@@ -356,7 +388,7 @@ Style and formatting preferences for generated materials.
 | Tier 3 | Under 60% | Stretch, apply only with referral |
 ```
 
-### Step 8: Save and Confirm
+### Step 9: Save and Confirm
 
 1. Write both files to `_config/`
 2. Confirm with a summary of everything that was set up:

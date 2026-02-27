@@ -51,8 +51,25 @@ You paste an agent prompt into Claude Code, the agent reads your config, researc
 - Your personal config files in `_config/` (the setup agent creates these)
 
 **Optional but recommended:**
-- LinkedIn contacts CSV for network/warm-intro analysis. Export from LinkedIn under Settings > Data Privacy > Get a copy of your data > Connections. Save to `_templates/linkedin-contacts.csv`.
-- A cover letter example or style guide in `_templates/` for tone matching
+- LinkedIn contacts CSV (see below)
+- A cover letter you've written (the agents match your writing voice from it)
+
+## Warm Intros via LinkedIn
+
+Cold applications convert at 2-5%. Warm intros convert at 10-20x that rate.
+
+When you import your LinkedIn connections, the agents scan your network for every company you research. They find mutual connections, second-degree paths, and anyone at the company you already know, then draft personalized outreach messages for the warmest path to the hiring manager.
+
+**How to export your connections (2 minutes):**
+
+1. Go to [linkedin.com/mypreferences/d/download-my-data](https://www.linkedin.com/mypreferences/d/download-my-data)
+2. Check **"Connections"** only (you don't need the rest)
+3. Click **"Request archive"**
+4. LinkedIn emails you a download link (usually within 10 minutes)
+5. Download the ZIP, extract `Connections.csv`
+6. Save it to `_templates/linkedin-contacts.csv`
+
+The setup agent walks you through this during onboarding, and the agents pick up the file automatically on every run. You can re-export every few months to keep it current.
 
 ## Agent Modes
 
