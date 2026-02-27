@@ -12,6 +12,7 @@ _templates/resume-tldr-template.md
 
 # Job tracker (contains personal pipeline data)
 job-applications-tracker.csv
+job-tracker.md
 
 # OS files
 .DS_Store
