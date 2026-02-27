@@ -138,10 +138,10 @@ Got it! I'm researching:
 - Your priority: [PRIORITY]
 - Special notes: [SPECIAL_INSTRUCTIONS or "None"]
 
-I'll save all outputs to: ~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/
+I'll save all outputs to: [OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/
 
 CRITICAL: I'll create _MOC.md first using the template from:
-~/Documents/Obsidian Vault/03-Projects/job-search/agent-output-config.md
+[OUTPUT_PATH from _config/user-profile.md]/agent-output-config.md
 ```
 
 ### Step 1.5: CRITICAL - Fetch Job Description First
@@ -279,7 +279,7 @@ Provide user with:
 
 ## Files Created
 
-Saved to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`:
+Saved to `[OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/`:
 
 ✅ company-intelligence.md - Company overview, news, culture
 ✅ hiring-managers.md - Who to contact (names, LinkedIn)

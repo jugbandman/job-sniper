@@ -66,27 +66,27 @@ Applied lessons from Jan 23 session that wasted 40% of tokens:
 ## Nov 2025: Always Get JD First
 
 **Date**: November 6, 2025
-**Source**: User feedback from SugarCRM application
+**Source**: User feedback from early application
 
 ---
 
 ## Issue: Doing Analysis Before Getting Job Description
 
-### What Happened (SugarCRM Example):
-1. User provided job URL: https://jobs.lever.co/sugarcrm/954d69d7-20f9-44d2-9056-15771b6c7e25
-2. I tried WebFetch → only got CSS code, no actual JD
-3. I proceeded with deep analysis based on:
-   - Job title: "Channel Sales Director"
-   - Company research (SugarCRM website, Crunchbase, etc.)
-   - Assumptions about channel roles
+### What Happened:
+1. User provided a job URL hosted on Lever
+2. Agent tried WebFetch, only got CSS code, no actual JD
+3. Agent proceeded with deep analysis based on:
+   - Job title from the URL
+   - Company research (website, Crunchbase, etc.)
+   - Assumptions about the role type
 4. Created initial materials:
    - Fit score: 78/100
    - Cover letter without JD specifics
    - Positioning strategy based on assumptions
 5. User later provided actual JD text
 6. Had to revise everything:
-   - Fit score: 78 → 90/100 (+12 points)
-   - JD specifically mentioned MSPs (user sold to MSPs!)
+   - Fit score jumped from 78 to 90/100 (+12 points)
+   - JD mentioned a specific skill the user had that was missed
    - Had to rewrite cover letter, positioning, analysis
    - Wasted tokens and time
 
@@ -228,16 +228,16 @@ Step 4: Create cover letter (references JD specifics)
 
 ## Lessons Learned
 
-### What Worked Well (SugarCRM):
+### What Worked Well:
 - Company research was accurate (didn't need revision)
-- Leadership research was correct (James Frampton = CRO)
-- Partner program research was solid (230+ partners, 5-Star CRN)
-- User's MSP experience was identified early (from his context, not JD)
+- Leadership research was correct
+- Industry research was solid
+- User's niche experience was identified early (from their profile, not JD)
 
-### What Was Wasteful (SugarCRM):
+### What Was Wasteful:
 - Created fit assessment without knowing actual requirements
 - Wrote cover letter without knowing JD language
-- Missed that JD specifically mentioned MSPs (perfect match for user!)
+- Missed that JD specifically called out a skill the user had (perfect match!)
 - Had to update 6+ files when JD finally arrived
 
 ### Key Takeaway:

@@ -1,4 +1,4 @@
-# User Profile - Jane Smith (Example)
+# User Profile - Jane Doe (Example)
 
 This is an example configuration. Copy this file to `user-profile.md` and customize it for your own use, or run the setup agent (`_agents/setup.md`) to generate one interactively.
 
@@ -6,10 +6,10 @@ This is an example configuration. Copy this file to `user-profile.md` and custom
 
 ## Candidate Info
 
-**Name:** Jane Smith
+**Name:** Jane Doe
 **Email:** jane@example.com
 **Phone:** 555-123-4567
-**LinkedIn:** linkedin.com/in/janesmith
+**LinkedIn:** linkedin.com/in/janedoe
 **Location:** Austin, TX
 
 ---
@@ -69,13 +69,13 @@ This is an example configuration. Copy this file to `user-profile.md` and custom
 ## Materials
 
 **Resumes:**
-- `_templates/resumes/jane-smith-leadership-resume.pdf` (leadership roles)
-- `_templates/resumes/jane-smith-ic-resume.pdf` (IC/AE roles)
+- `_templates/resumes/jane-doe-leadership-resume.pdf` (leadership roles)
+- `_templates/resumes/jane-doe-ic-resume.pdf` (IC/AE roles)
 
 **Cover Letter Sample:** `_templates/my-best-cover-letter.md`
 **Cover Letter Style Guide:** `_templates/cover-letter-style-guide.md`
 **LinkedIn Contacts CSV:** `_templates/linkedin-contacts.csv`
-**Portfolio:** https://janesmith.com
+**Portfolio:** https://janedoe.com
 
 ---
 

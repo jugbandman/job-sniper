@@ -310,7 +310,7 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 **Step 1**: Confirm you've received all job URLs
 **Step 2**: Announce your plan: "I'm analyzing [X] roles at [COMPANY_NAME]: [list titles]"
 **Step 3**: Execute Phase 1-5
-**Step 4**: Save all outputs to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`
+**Step 4**: Save all outputs to `[OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/`
 **Step 5**: Update job tracker (see below)
 **Step 6**: Return recommendation: Which role to pursue and why
 

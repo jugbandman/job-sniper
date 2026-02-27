@@ -9,7 +9,7 @@
 1. **Fill in the inputs below** (Job URL, company name, research depth)
 2. **Copy this entire prompt** (from "AGENT INSTRUCTIONS" to end)
 3. **Paste into Claude Code** (or Claude.ai)
-4. **Agent will execute** and save all outputs to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`
+4. **Agent will execute** and save all outputs to `[OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/`
 
 ---
 
@@ -191,7 +191,7 @@ Launch these agents in parallel using the Task tool:
 ## File Structure You'll Create
 
 ```
-~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/
+[OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/
 ├── company-intelligence.md
 ├── hiring-managers.md
 ├── job-analysis-fit-matrix.md
@@ -314,7 +314,7 @@ Acme SaaS,Head of Sales,Remote US,https://acme.com/jobs/123,Not yet applied,Rese
 **Step 2**: Announce your execution plan:
 - "I'm running [Quick/Standard/Deep] research for [COMPANY_NAME]"
 - "I'll launch [X] agents in parallel, then run [Y] sequential phases"
-- "All outputs will be saved to ~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/"
+- "All outputs will be saved to [OUTPUT_PATH from _config/user-profile.md]/[COMPANY_NAME]/"
 
 **Step 3**: Execute and report back with:
 - Summary of key findings (company, hiring manager, fit assessment)
