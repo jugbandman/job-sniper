@@ -14,6 +14,13 @@ _templates/resume-tldr-template.md
 job-applications-tracker.csv
 job-tracker.md
 
+# Watchlist (personal company targets)
+_config/watchlist.md
+
+# Cache (watchlist seen postings, pulse check timestamps)
+_cache/*
+!_cache/README.md
+
 # OS files
 .DS_Store
 .DS_Store

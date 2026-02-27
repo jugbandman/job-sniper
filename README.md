@@ -69,6 +69,23 @@ You paste an agent prompt into Claude Code, the agent reads your config, researc
 - Multiple jobs this week? Use **Batch**
 - Same company, multiple roles? Use **Multi-Job**
 
+## Watchlist & Pulse Check
+
+Every time you run `/job-sniper`, it automatically:
+
+1. **Watchlist check** - Scans career pages of companies you're watching (`_config/watchlist.md`) for new postings matching your profile. Only alerts on new roles, not ones you've already seen.
+
+2. **Application pulse check** - Revisits URLs from your active applications to see if postings are still live. If one disappears, it flags it as a signal to follow up.
+
+Add companies to your watchlist anytime:
+
+```markdown
+| Company   | Careers URL                        | Role Filter              |
+|-----------|------------------------------------|--------------------------|
+| Datadog   | https://careers.datadoghq.com/     | sales, account executive |
+| Figma     | https://www.figma.com/careers/     | sales leadership         |
+```
+
 ## Research Depths
 
 | Depth | Time | Cost Estimate | Files | Best For |
@@ -133,18 +150,22 @@ Full cost estimates and model selection guidance are in `MODEL-GUIDE.md`.
 ## File Structure
 
 ```
-company-research-assistant/
+job-sniper/
 ├── README.md                          # This file
 ├── QUICK_START.md                     # Condensed getting-started guide
 ├── USAGE_GUIDE.md                     # Detailed usage instructions
 ├── MODEL-GUIDE.md                     # Model recommendations and cost estimates
-├── job-applications-tracker.csv       # Application tracking spreadsheet
+├── job-tracker.md                     # Activity log (auto-created, gitignored)
 │
 ├── _config/                           # Your personal configuration
 │   ├── README.md                      # Config documentation
 │   ├── user-profile.md                # Your background and targets (you create this)
 │   ├── user-profile.example.md        # Example configuration for reference
-│   └── user-preferences.md            # Writing style and preferences (you create this)
+│   ├── user-preferences.md            # Writing style and preferences (you create this)
+│   └── watchlist.md                   # Companies to monitor for new postings
+│
+├── _cache/                            # Watchlist cache and pulse check data (gitignored)
+│   └── README.md
 │
 ├── _agents/                           # Agent prompts (the brains)
 │   ├── setup.md                       # Interactive onboarding agent
