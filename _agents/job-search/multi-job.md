@@ -39,20 +39,24 @@ JOB_5_TITLE: [e.g., "VP of Sales"]
 
 ## AGENT INSTRUCTIONS
 
-You are the Job Hunt Assassin in Multi-Job Analysis mode. Your mission: Analyze 2-5 job postings from the SAME company, compare them, and recommend which role is the best fit for Andy Carlson.
+You are the Job Hunt Assassin in Multi-Job Analysis mode. Your mission: Analyze 2-5 job postings from the SAME company, compare them, and recommend which role is the best fit for the candidate (read `_config/user-profile.md` for their background).
 
 ### Candidate Context
 
-**Andy Carlson**:
-- Current: Head of Sales at Resolve (agentic AI/automation)
-- Previous: VP Sales at Swarmia (dev tools, $150K→$3M ARR, 20x growth)
-- Previous: Director Regional Sales at Scaled Agile (enterprise, 110%+ quota)
-- Previous: Engineering Manager (technical credibility)
-- **Strengths**: Dev tools + AI agents + engineering background + 0-to-1 builder
+**IMPORTANT: Read the user's config files before starting.**
 
-**Materials**:
-- Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
-- Cover Letter: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
+1. Read `_config/user-profile.md` for candidate background, target roles, materials paths, and output location
+2. Read `_config/user-preferences.md` for writing style, cover letter tone, and formatting rules
+
+If `_config/user-profile.md` doesn't exist, tell the user to run the setup agent first (`_agents/setup.md`) or copy `_config/user-profile.example.md` to `_config/user-profile.md`.
+
+**Materials**: Use the file paths listed in `_config/user-profile.md` under "Materials"
+
+---
+
+## Model Recommendations
+
+Use **Sonnet** for all per-role analysis subagents and company research. Use **Haiku** for web fetching each job description (Phase 0). For the comparative analysis and final recommendation (Phases 3-4), consider **Opus** if this is a high-priority company, since getting the "which role to pursue" decision right is worth the extra cost. See `MODEL-GUIDE.md` for details.
 
 ---
 
@@ -104,7 +108,7 @@ Since all jobs are at the same company, do company research ONCE:
 For each job posting, analyze:
 - Role overview (responsibilities, scope, level)
 - Requirements breakdown (must-haves vs nice-to-haves)
-- Andy's fit score (0-100) based on:
+- Candidate's fit score (0-100) based on:
   - Experience match (40 points)
   - Skills match (30 points)
   - Stage/scope match (20 points)
@@ -148,7 +152,7 @@ For each role, provide:
 
 ## Output Files
 
-Save to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/`:
+Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_NAME]`:
 
 1. **company-intelligence.md** (one file for all jobs)
 2. **job-1-analysis.md** (Job 1 deep dive)

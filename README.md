@@ -1,291 +1,200 @@
 # Company Research Assistant
 
-**General-purpose company intelligence platform. Job search is one use case.**
-
-Formerly "Job Hunt Assassin" / "job-sniper". Renamed Jan 2026 to reflect broader scope.
-
----
-
-## What Is This?
-
-An AI-powered agent system for company research across multiple use cases ("lenses"):
-
-| Lens | Purpose |
-|------|---------|
-| **Job Search** | Find roles, generate materials, track applications |
-| **Prospect Research** | Research companies for sales (Remix Revenue, HyperAdaptive) |
-| **Market Intel** | Track companies, funding rounds, competitive landscape |
-| **General** | Any company deep dive for any purpose |
+An AI-powered agent system that researches companies, analyzes job postings, identifies hiring managers, maps your network, and generates customized application materials. It runs on [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and produces a folder of ready-to-use files for every job you target.
 
 **Philosophy**: Don't be another resume in the pile. Be the candidate who did more research than the hiring manager.
 
----
+## How It Works
+
+The system is built from three layers that work together:
+
+1. **Agent prompts** (`_agents/`) define what research to do and how to structure it
+2. **Your config** (`_config/`) tells the agents who you are, what you're targeting, and how you like to write
+3. **Templates** (`_templates/`) hold your resume, cover letter examples, and LinkedIn contacts
+
+You paste an agent prompt into Claude Code, the agent reads your config, researches the company, and writes everything to a structured output folder.
 
 ## Quick Start
 
-### 1. You Already Have:
-- Resume: `_templates/Andrew Carlson Resume 2025.pdf`
-- Cover Letter Template: `_templates/About Andy Carlson Intro 2025.pdf`
-- Agent (single job): `_agents/job-search/main.md`
-- Agent (batch): `_agents/job-search/batch.md`
-- Agent (interactive): `_agents/job-search/interactive.md`
-- Agent (multi-job compare): `_agents/job-search/multi-job.md`
-- Usage Guide: `USAGE_GUIDE.md`
-
-### 2. Optional but Recommended:
-- ❓ **Export LinkedIn Contacts**:
-  1. LinkedIn → Settings & Privacy → Data Privacy
-  2. "Get a copy of your data" → Select "Connections"
-  3. Download ZIP → Extract `Connections.csv`
-  4. Save to `_templates/linkedin-contacts.csv`
-
-  **Why**: Enables automatic warm intro finding (2nd degree connections to hiring managers)
-
-### 3. Run Your First Job Search:
-1. **Open**: `_agents/job-hunt-assassin-main.md`
-2. **Fill in** USER INPUTS at top:
+1. **Clone this repo** (skip this if you already have it)
+   ```bash
+   git clone https://github.com/your-username/company-research-assistant.git
+   cd company-research-assistant
    ```
-   JOB_URL: [paste job posting URL]
-   COMPANY_NAME: [e.g., "acme-saas"]
-   RESEARCH_DEPTH: Quick
-   ROLE_TYPE: AE
-   YOUR_PRIORITY: equity + growth
+
+2. **Install Claude Code** (skip this if you already have it)
+   Follow the [official install guide](https://docs.anthropic.com/en/docs/claude-code). You need a Claude API key or a Claude Pro/Max subscription.
+
+3. **Run the setup agent** to create your personal config
    ```
-3. **Copy entire prompt** (from "AGENT INSTRUCTIONS" to end)
-4. **Paste into Claude Code** (or Claude.ai)
-5. **Wait 15-20 minutes** (Quick research)
-6. **Review outputs** in `~/job-search/[company-name]/`
+   Open _agents/setup.md, copy the entire file, paste into Claude Code
+   ```
+   The setup agent asks about your background, target roles, and preferences, then generates your `_config/user-profile.md` and `_config/user-preferences.md` files. Takes about 5 minutes.
 
----
+4. **Add your resume** to `_templates/` (PDF or markdown)
 
-## Research Depth Options
+5. **Pick a job and run an agent**
+   ```
+   Open _agents/job-search/interactive.md, copy the entire file, paste into Claude Code
+   ```
+   Answer 6 questions (job URL, company name, research depth, role type, your priority, special notes). The agent does the rest.
 
-| Depth | Time | Use Case | Outputs | Best For |
-|-------|------|----------|---------|----------|
-| **Quick** | 15-20 min | Most applications (80%) | 7 files | Decent fit, applying to 5+ roles/week |
-| **Standard** | 30-45 min | Strong matches (15%) | 10 files | Great fit, excited about company |
-| **Deep** | 60+ min | Dream jobs (5%) | 12 files | Perfect fit, top 1% opportunity |
+## Prerequisites
 
-**Rule of Thumb**:
-- **Quick**: "I'm qualified and interested" → Apply to 10-15 per week
-- **Standard**: "This is a great match" → Apply to 2-3 per week
-- **Deep**: "This is THE job" → Apply to 1-2 per month
+**Required:**
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and configured
+- A resume (PDF or markdown, saved in `_templates/`)
+- Your personal config files in `_config/` (the setup agent creates these)
 
----
+**Optional but recommended:**
+- LinkedIn contacts CSV for network/warm-intro analysis. Export from LinkedIn under Settings > Data Privacy > Get a copy of your data > Connections. Save to `_templates/linkedin-contacts.csv`.
+- A cover letter example or style guide in `_templates/` for tone matching
 
-## What You Get (Output Files)
+## Agent Modes
 
-### All Depths:
-- ✅ `company-intelligence.md` - Company overview, news, culture, red flags
-- ✅ `hiring-managers.md` - Who to contact (names, titles, LinkedIn)
-- ✅ `job-analysis-fit-matrix.md` - Your fit for each requirement (A+/A/B/C/Gap)
-- ✅ `positioning-strategy.md` - How to position yourself, key talking points
-- ✅ `cover-letter.md` - Customized cover letter (ready to send)
-- ✅ `linkedin-messages.md` - Outreach messages (hiring manager, connections)
-- ✅ `email-sequence.md` - Follow-up templates (Day 0, 3, 7)
+| Mode | Agent File | Best For |
+|------|-----------|----------|
+| **Interactive** | `_agents/job-search/interactive.md` | First-time users, guided Q&A format |
+| **Main** | `_agents/job-search/main.md` | Power users, fill in variables and go |
+| **Batch** | `_agents/job-search/batch.md` | Processing 5+ job URLs at once |
+| **Multi-Job** | `_agents/job-search/multi-job.md` | Comparing 2-5 roles at the same company |
 
-### Standard & Deep:
-- ✅ `network-paths.md` - Warm intro opportunities (via your LinkedIn)
-- ✅ `competitive-intelligence.md` - Market positioning, how company differentiates
+**Decision tree:**
+- First time? Start with **Interactive**
+- One job, you know the drill? Use **Main**
+- Multiple jobs this week? Use **Batch**
+- Same company, multiple roles? Use **Multi-Job**
 
-### Deep Only:
-- ✅ `interview-prep.md` - Questions to ask, STAR stories
-- ✅ `30-60-90-day-plan.md` - Execution plan (if sales/GTM role)
-- ✅ `take-home-package.md` - Research summary to attach with application
+## Research Depths
 
----
+| Depth | Time | Cost Estimate | Files | Best For |
+|-------|------|---------------|-------|----------|
+| **Quick** | 15-20 min | $0.40-$1.00 | 7 | Most applications (volume play, 80% of your pipeline) |
+| **Standard** | 30-45 min | $1.00-$2.50 | 10 | Strong matches you're excited about |
+| **Deep** | 60+ min | $5-$12 | 12 | Dream jobs, top 1% opportunities |
 
-## Example: What Kilo Code Research Looked Like
+Cost estimates assume recommended model mix (Haiku for scraping, Sonnet for analysis). See `MODEL-GUIDE.md` for full breakdown and model selection guidance.
 
-We built this agent by creating comprehensive research for the Kilo Code AE role:
+## Output Files
 
-**Inputs**:
-- Job URL: https://jobs.ashbyhq.com/kilocode/account-executive
-- Research Depth: Deep (60+ min)
-- Role Type: Account Executive
+Every research run creates a folder of markdown files at your configured output path.
 
-**Outputs** (17 files, 444KB):
-- Market intelligence (verified #1 on OpenRouter, 420K downloads)
-- Competitive battlecards (Cursor, Windsurf, Copilot, Cody)
-- Lead scoring rubric (how to qualify inbound leads)
-- Sales playbooks (discovery, demo, objection handling)
-- ICP analysis (who buys, why, how)
-- Strategic analysis (opportunity strengths/risks, recommendation: PURSUE)
-- 30/60/90 day plan (week-by-week action plan)
-- Customized cover letter (with company-specific insights)
-- Application one-pager (executive summary)
+**All depths produce:**
+- `company-intelligence.md` - Company overview, news, culture, red flags
+- `hiring-managers.md` - Who to contact (names, titles, LinkedIn)
+- `job-analysis-fit-matrix.md` - Your fit for each requirement (A+/A/B/C/Gap)
+- `positioning-strategy.md` - How to position yourself, key talking points
+- `cover-letter.md` - Customized cover letter (ready to send)
+- `linkedin-messages.md` - Outreach messages for hiring managers and connections
+- `email-sequence.md` - Follow-up templates (Day 0, 3, 7)
 
-**Result**: Not just an application, but a complete "take-home" package proving you've done deeper research than anyone else.
+**Standard and Deep add:**
+- `network-paths.md` - Warm intro opportunities (requires LinkedIn CSV)
+- `competitive-intelligence.md` - Market positioning, how the company differentiates
 
----
+**Deep adds:**
+- `interview-prep.md` - Questions to ask, STAR stories mapped to your experience
+- `30-60-90-day-plan.md` - Execution plan (especially useful for sales/GTM roles)
+- `take-home-package.md` - Research summary to attach with your application
 
-## How This Beats Normal Job Applications
+## Configuration
 
-### Normal Candidate:
-- Submits generic resume
-- Generic cover letter (or no cover letter)
-- Waits for response
-- **Response rate: 2-5%**
+Your personal setup lives in `_config/`. Two files control everything:
 
-### You (Using Job Hunt Assassin):
-- Submits resume + customized cover letter with company-specific insights
-- Attaches "take-home" research package (Deep mode)
-- Reaches out to hiring manager via warm intro (if network path exists)
-- Sends follow-up emails Day 3, Day 7 (from agent-generated templates)
-- **Expected response rate: 20-40%** (10x better)
+| File | What It Controls |
+|------|-----------------|
+| `user-profile.md` | Who you are, your background, target roles, resume path, output location |
+| `user-preferences.md` | Writing style, cover letter tone, research depth defaults, scoring thresholds |
 
-**Why It Works**:
-- Shows you did homework (hiring managers respect this)
-- Proves you're serious (not spamming 100 jobs)
-- Demonstrates skills (research, analysis, communication)
-- Builds relationships (warm intros convert 5-10x better)
+**First time?** Run the setup agent (`_agents/setup.md`) to generate both files interactively.
 
----
+**Already set up?** Edit the files directly. Agents read them fresh every run, so changes take effect immediately.
 
-## Files in This Repo
+See `_config/README.md` for details on what goes where, and `_config/user-profile.example.md` for a complete reference configuration.
+
+## Model Guide
+
+The agents work with any Claude model, but different tasks benefit from different models.
+
+| Task Type | Recommended Model |
+|-----------|------------------|
+| Scraping and parsing | Haiku (cheapest, fastest) |
+| Research, analysis, cover letters | Sonnet (best balance) |
+| Dream job strategy, competitive analysis | Opus (highest quality) |
+
+**For everyday use, Sonnet handles 90% of tasks well.** Only reach for Opus on Deep research for your top-choice companies.
+
+Full cost estimates and model selection guidance are in `MODEL-GUIDE.md`.
+
+## File Structure
 
 ```
 company-research-assistant/
-├── README.md (this file)
-├── USAGE_GUIDE.md (detailed instructions)
-├── QUICK_START.md
-├── job-applications-tracker.csv
+├── README.md                          # This file
+├── QUICK_START.md                     # Condensed getting-started guide
+├── USAGE_GUIDE.md                     # Detailed usage instructions
+├── MODEL-GUIDE.md                     # Model recommendations and cost estimates
+├── job-applications-tracker.csv       # Application tracking spreadsheet
 │
-├── _templates/
-│   ├── Andrew Carlson Resume 2025.pdf
-│   ├── About Andy Carlson Intro 2025.pdf
-│   ├── resumes/ (multiple resume versions)
-│   ├── cover-letter-style-guide.md
-│   ├── resume-tldr-template.md
-│   ├── linkedin-contacts.csv (export from LinkedIn)
-│   └── README.md
+├── _config/                           # Your personal configuration
+│   ├── README.md                      # Config documentation
+│   ├── user-profile.md                # Your background and targets (you create this)
+│   ├── user-profile.example.md        # Example configuration for reference
+│   └── user-preferences.md            # Writing style and preferences (you create this)
 │
-├── _agents/
-│   ├── AGENT-WORKFLOW-IMPROVEMENTS.md
-│   ├── core/ (shared research capabilities)
-│   │   └── company-research.md (general company research - future)
-│   └── job-search/ (job search lens)
-│       ├── batch.md (batch URL processing)
-│       ├── interactive.md (Q&A mode)
-│       ├── main.md (single job deep dive)
-│       └── multi-job.md (compare roles at same company)
+├── _agents/                           # Agent prompts (the brains)
+│   ├── setup.md                       # Interactive onboarding agent
+│   ├── core/                          # Shared research capabilities
+│   │   └── company-research.md        # General company research (future)
+│   └── job-search/                    # Job search agents
+│       ├── main.md                    # Single job deep dive
+│       ├── batch.md                   # Batch URL processing
+│       ├── interactive.md             # Guided Q&A mode
+│       └── multi-job.md              # Compare roles at same company
 │
-└── Output goes to Obsidian:
-    03-Projects/job-search/opportunities/{company}-{role}/
-    ├── _MOC.md (source of truth, frontmatter syncs to Notion)
-    ├── cover-letter.md
-    ├── resume-tldr.md
-    └── research-notes.md
+└── _templates/                        # Your materials
+    ├── README.md                      # Template documentation
+    ├── resumes/                       # Your resume versions
+    ├── cover-letter-style-guide.md    # Cover letter tone reference
+    ├── resume-tldr-template.md        # Resume summary template
+    └── linkedin-contacts.csv          # Your LinkedIn export (optional)
 ```
 
----
+## Contributing and Customization
 
-## Next Steps
+This tool is designed to be forked and personalized. Some ways to make it yours:
 
-### Today (Test It):
-1. **Export LinkedIn contacts** (optional but recommended)
-2. **Find a job posting** you're interested in
-3. **Run Quick research** (15-20 min) to test the agent
-4. **Review outputs** - are they useful? What needs tweaking?
+- **Add new agent modes** in `_agents/job-search/` for different research workflows
+- **Customize templates** in `_templates/` with your own cover letter formats
+- **Tune preferences** in `_config/user-preferences.md` to match your voice
+- **Add new lenses** beyond job search (prospect research, market intel) in `_agents/core/`
 
-### This Week:
-1. **Run Quick on 5-10 jobs** - Build pipeline, see what converts
-2. **Run Standard on top 2** - Strong matches get deeper research
-3. **Track results** - Which depth gets best response rate?
-
-### Ongoing:
-1. **A/B test messaging** - Try different cover letter angles, see what works
-2. **Build network** - Leverage warm intros when network-paths.md finds them
-3. **Iterate** - Agent gets better as you refine your templates and inputs
-
----
+The agent prompts are plain markdown. Read one, understand the pattern, and adapt it however you want.
 
 ## Troubleshooting
 
-**Agent can't find hiring manager?**
-→ Check company website Team page, LinkedIn job posting, or search X/Twitter
+**Agent can't find the hiring manager?**
+That happens. The agent will note it and generate generic outreach. You can check the company website Team page, LinkedIn job posting, or search on X/Twitter.
 
 **Network path analysis finds nothing?**
-→ That's OK, agent still generates cold outreach messages
+Expected if you haven't exported your LinkedIn CSV, or if you don't have connections at that company. The agent still generates cold outreach messages.
 
 **Cover letter too long?**
-→ Edit down to 1 page, move research to take-home attachment
+Edit down to one page. Move the extra research into a take-home attachment (Deep mode generates this automatically).
 
-**Job description vague?**
-→ Agent will do its best, but garbage in = garbage out. Better JDs = better outputs.
+**Job description is vague?**
+The agent does its best, but better input produces better output. Add context in the "special instructions" field.
 
-**Agent slow?**
-→ Use Quick (15-20 min) for most jobs, save Deep (60+ min) for dream roles
+**Agent running slow?**
+Use Quick depth (15-20 min) for most jobs. Save Deep (60+ min) for the ones that really matter.
 
----
+**Config not being picked up?**
+Make sure your files are named exactly `_config/user-profile.md` and `_config/user-preferences.md`. The agents look for these specific filenames.
 
-## Advanced Tips
+## Why This Works
 
-### Parallel Processing
-Run multiple Quick searches simultaneously in different Claude sessions. Review all outputs, prioritize best matches, then run Standard/Deep on top choices.
+The normal application process looks like this: submit a generic resume, maybe write a cover letter, wait and hope. Response rates sit around 2-5%.
 
-### A/B Testing
-Run agent twice on similar roles, try different positioning angles in cover letter. Track which gets more responses.
+This tool flips that. Every application comes with company-specific research, a tailored cover letter, hiring manager outreach, and (for dream jobs) a take-home research package that proves you've done the homework. When a hiring manager sees that level of preparation, you stand out.
 
-### Pipeline Management
-Create simple spreadsheet:
-```
-| Company | Role | Stage | Applied | Last Touch | Next Action | Hiring Manager | Network Path |
-```
-Update after each action (applied, reached out, interviewed, offer, rejected).
-
----
-
-## Success Metrics
-
-Track these over time:
-- **Volume**: How many Quick/Standard/Deep runs per week?
-- **Response rate**: % that get callbacks
-- **Interview rate**: % that lead to interviews
-- **Network success**: Do warm intros convert better?
-- **Time saved**: How much faster than manual research?
-
-**Goal**: 20-40% response rate (vs industry 2-5%)
-
----
-
-## Future Enhancements
-
-**Phase 2** (Coming Later):
-- Google Docs integration (auto-create cover letter doc)
-- Notion DB tracker (auto-log applications)
-- Automated follow-up reminders (Day 3, Day 7)
-
-**Phase 3** (Future):
-- Email integration (auto-send follow-ups)
-- CRM-style pipeline management
-- Interview scheduling automation
-
----
-
-## Built From Kilo Code Success
-
-This agent is the productized version of the Kilo Code job exploration, which created:
-- 17 files, 65,000 words, 444KB of research
-- Market intelligence, competitive analysis, ICP analysis
-- Lead scoring system, sales playbooks, 30/60/90 day plan
-- Customized cover letter and application one-pager
-- All in ~2 hours using parallel AI agents
-
-**Result**: Proved you can hit Week 1 objectives on Day 1. Showed deeper company understanding than most employees. Became the obvious hire.
-
-**Now**: You can do this for every job, not just one.
-
----
-
-## Questions?
-
-**Read**: `USAGE_GUIDE.md` (comprehensive instructions)
-**Start**: Open `_agents/job-hunt-assassin-main.md` and run your first search
-**Iterate**: Test on 5-10 jobs this week, refine as you learn what works
-
----
-
-**Ready to hunt? Let's turn job search into a sales pipeline. 🎯**
-
-*"Treat job search like enterprise sales: research deeply, personalize heavily, multi-thread intelligently, follow up consistently."*
+It works because it treats job search like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently.

@@ -111,6 +111,12 @@ Examples:
 
 ---
 
+## Model Recommendations
+
+Default to **Sonnet** for all research and content generation. Use **Haiku** for the initial JD web fetch (Step 1.5) since extraction does not need a heavy model. For Deep research on a dream job, consider **Opus** for the positioning strategy and interview prep phases where nuance matters most. See `MODEL-GUIDE.md` for cost estimates by depth.
+
+---
+
 ## AGENT INSTRUCTIONS (Don't edit below this line)
 
 Once the user has answered all 6 questions above, execute the following:
@@ -181,7 +187,7 @@ Follow the same workflow as `job-hunt-assassin-main.md`:
 - Create key talking points
 
 **Phase 3: Outreach Materials**
-- Generate cover letter (using `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`)
+- Generate cover letter (using the style guide and reference cover letter from `_config/user-profile.md`)
 - Generate LinkedIn messages
 - Generate email sequence (if Standard/Deep)
 
@@ -191,7 +197,7 @@ Follow the same workflow as `job-hunt-assassin-main.md`:
 - Create take-home research summary
 
 ### Step 3: Save Outputs
-Save all files to `~/Documents/Obsidian Vault/03-Projects/job-search/opportunities/[COMPANY_NAME]/` using Write tool:
+Save all files to the output path from `_config/user-profile.md`, substituting `[COMPANY_NAME]`:
 - `company-intelligence.md`
 - `hiring-managers.md`
 - `job-analysis-fit-matrix.md`
@@ -321,17 +327,14 @@ Good luck! Check the output files for all the details. 🎯
 
 ## Candidate Context (For Agent Reference)
 
-**Andy Carlson**:
-- Current: Head of Sales at Resolve (agentic AI/automation)
-- Previous: VP Sales at Swarmia (dev tools, $150K→$3M ARR, 20x growth)
-- Previous: Director Regional Sales at Scaled Agile (enterprise, 110%+ quota 3 years)
-- Previous: Engineering Manager (technical background)
-- **Unique strengths**: Dev tools + AI agents + engineering credibility + 0-to-1 builder
+**IMPORTANT: Read the user's config files before starting.**
 
-**Materials Available**:
-- Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
-- Cover Letter: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
-- LinkedIn Contacts: `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv` (if exists)
+1. Read `_config/user-profile.md` for candidate background, target roles, materials paths, and output location
+2. Read `_config/user-preferences.md` for writing style, cover letter tone, and formatting rules
+
+If `_config/user-profile.md` doesn't exist, tell the user to run the setup agent first (`_agents/setup.md`) or copy `_config/user-profile.example.md` to `_config/user-profile.md`.
+
+**Materials**: Use the file paths listed in `_config/user-profile.md` under "Materials"
 
 ---
 

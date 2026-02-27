@@ -1,354 +1,266 @@
-# Job Hunt Assassin - Usage Guide
+# Usage Guide
 
-**Last Updated**: November 6, 2025
+Detailed instructions for getting the most out of the Company Research Assistant.
 
----
+## What This Tool Does
 
-## What Is This?
-
-The Job Hunt Assassin is an automated agent that researches companies, finds hiring managers, analyzes your network, and generates customized application materials. It treats job search like enterprise sales: research deeply, personalize heavily, multi-thread intelligently.
+The Company Research Assistant is an automated agent that researches companies, finds hiring managers, analyzes your network, and generates customized application materials. It treats job search like enterprise sales: research deeply, personalize heavily, multi-thread your outreach.
 
 **Philosophy**: Don't be another resume in the pile. Be the candidate who understands the company better than their own employees.
 
----
-
 ## Quick Start (5 Minutes)
 
-1. **Open** `/Users/andycarlson/job-search/_agents/job-hunt-assassin-main.md`
-2. **Fill in** the USER INPUTS section:
-   ```
-   JOB_URL: https://jobs.ashbyhq.com/acmesaas/account-executive
-   COMPANY_NAME: acme-saas
-   RESEARCH_DEPTH: Standard
-   ROLE_TYPE: AE
-   YOUR_PRIORITY: equity + growth
-   ```
-3. **Copy** the entire prompt (from "AGENT INSTRUCTIONS" to end)
-4. **Paste** into Claude Code or Claude.ai
-5. **Wait** 30-45 minutes (agent runs automatically)
-6. **Review** outputs in `~/Documents/Coding/company-research-assistant/acme-saas/`
+1. **Make sure your config exists.** You need `_config/user-profile.md` and `_config/user-preferences.md`. If you don't have them, run the setup agent first (`_agents/setup.md`).
 
----
+2. **Open an agent file.** For your first run, use `_agents/job-search/interactive.md`.
+
+3. **Copy the entire file** and paste it into Claude Code.
+
+4. **Answer the questions** when prompted (job URL, company name, research depth, role type, your priority, special notes).
+
+5. **Wait** 15-20 minutes for Quick depth, 30-45 for Standard, 60+ for Deep.
+
+6. **Review outputs** in your configured output folder (set in `_config/user-profile.md`).
 
 ## Research Depth Guide
 
-### Quick (15-20 min) - Use for Most Applications
-**When**: Decent fit, but not dream job. You're applying to 5+ roles this week.
+### Quick (15-20 min)
 
-**What You Get**:
+**When to use:** Decent fit, but not a dream job. You're applying to several roles this week.
+
+**What you get:**
 - Company intelligence (overview, news, culture, red flags)
 - Hiring manager identification
-- Job analysis & fit matrix
-- Positioning strategy & resume TLDR
+- Job analysis and fit matrix
+- Positioning strategy
 - Custom cover letter
 - LinkedIn outreach messages
+- Email follow-up sequence
 
-**What You Don't Get**:
-- Network path analysis
-- 30/60/90 day plan
-- Competitive intelligence
-- Take-home research package
+**What you don't get:** Network path analysis, competitive intelligence, interview prep, 30/60/90 day plan.
 
-**Use Case**: "I'm applying to 10 AE roles. I need good-enough materials fast."
+**Cost estimate:** $0.40-$1.00 with recommended model mix.
 
-### Standard (30-45 min) - Use for Strong Matches
-**When**: Great fit, company you're excited about. Top 20% of applications.
+**Use case:** "I'm applying to 10 roles this week. I need solid materials fast."
 
-**Everything from Quick, plus**:
-- Network path analysis (find warm intros via your LinkedIn connections)
-- Deeper competitive intelligence
-- Email sequence (follow-up cadence)
-- More detailed positioning strategy
+### Standard (30-45 min)
 
-**Use Case**: "This role is a strong match. I want to maximize my chances."
+**When to use:** Strong match at a company you're excited about.
 
-### Deep (60+ min) - Use for Dream Jobs Only
-**When**: Perfect fit, dream company. Top 5% of applications.
+**Everything from Quick, plus:**
+- Network path analysis (warm intro opportunities via your LinkedIn connections)
+- Competitive intelligence (market positioning, differentiation)
+- Deeper positioning strategy with more company-specific angles
+- More detailed email follow-up sequence
 
-**Everything from Standard, plus**:
-- 30/60/90 day plan (if sales/GTM role)
+**Cost estimate:** $1.00-$2.50 with recommended model mix.
+
+**Use case:** "This is a great fit. I want to maximize my chances."
+
+### Deep (60+ min)
+
+**When to use:** Dream job, perfect fit, top 1% opportunity.
+
+**Everything from Standard, plus:**
+- Interview prep package (questions to ask, STAR stories mapped to your experience)
+- 30/60/90 day plan (especially useful for sales and GTM roles)
+- Take-home research package (summary designed to attach with your application)
 - Full competitive analysis with battlecards
-- Interview prep package
-- Take-home research package (to attach with application)
-- STAR story mapping
 
-**Use Case**: "This is THE role. I'm going all-in."
+**Cost estimate:** $5-$12 with recommended model mix (higher if using Opus for strategy).
 
----
+**Use case:** "This is THE role. I'm going all-in."
+
+### Choosing Your Depth
+
+A practical split for most job searchers:
+- **80% Quick** for volume (build pipeline, cast a wide net)
+- **15% Standard** for strong matches (invest more where it counts)
+- **5% Deep** for dream jobs (maximum effort, maximum differentiation)
 
 ## Prerequisites
 
-### Required (You Have These)
-- ✅ Resume: `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf`
-- ✅ Cover Letter Template: `~/Documents/Coding/company-research-assistant/_templates/About Andy Carlson Intro 2025.pdf`
+### Required
+
+- **Claude Code** installed and configured. See the [official guide](https://docs.anthropic.com/en/docs/claude-code).
+- **Your config files** in `_config/`. Run `_agents/setup.md` to create them, or copy `_config/user-profile.example.md` to `_config/user-profile.md` and edit manually.
+- **A resume** in `_templates/` (PDF or markdown).
 
 ### Optional (Enhances Output)
-- ❓ LinkedIn Contacts CSV: `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv`
-  - Enables network path analysis (warm intro finding)
-  - Export from LinkedIn: Settings → Data Privacy → Get a copy of your data → Connections
-- ❓ Additional cover letter examples by role type (if you have different templates for AE vs VP Sales vs RevOps)
 
----
+- **LinkedIn Contacts CSV** at `_templates/linkedin-contacts.csv`. Enables network path analysis, which finds warm intros through your existing connections. Without it, the agent skips network analysis and generates cold outreach instead.
+- **Cover letter examples** in `_templates/`. If you have existing cover letters you like, the agent can match your voice and tone.
 
-## How to Get LinkedIn Contacts CSV
+## Exporting LinkedIn Contacts
 
-1. Go to LinkedIn → **Me** → **Settings & Privacy**
-2. **Data Privacy** → **Get a copy of your data**
-3. Select **"Connections"** only (faster download)
-4. **Request Archive** (takes ~10 minutes)
+1. Go to LinkedIn > **Me** > **Settings & Privacy**
+2. **Data Privacy** > **Get a copy of your data**
+3. Select **Connections** only (faster download)
+4. **Request Archive** (takes about 10 minutes)
 5. LinkedIn emails you a ZIP file
 6. Extract `Connections.csv`
-7. Save to `~/Documents/Coding/company-research-assistant/_templates/linkedin-contacts.csv`
+7. Save to `_templates/linkedin-contacts.csv`
 
-**Format Expected**:
+The expected format:
 ```csv
 First Name,Last Name,Email Address,Company,Position,Connected On
-John,Doe,john@example.com,Acme Corp,VP Sales,01 Jan 2023
-...
+Jane,Smith,jane@example.com,Acme Corp,VP Sales,01 Jan 2023
 ```
 
----
+Export a fresh CSV every 3-6 months to keep network analysis current.
 
 ## Output Structure
 
-After running the agent, you'll have a folder like this:
+After running the agent, you get a folder of markdown files at your configured output path.
 
 ```
-~/Documents/Coding/company-research-assistant/acme-saas/
+{your-output-path}/{company}-{role}/
 ├── company-intelligence.md          # Company overview, news, culture
 ├── hiring-managers.md                # Who to contact, titles, LinkedIn
 ├── job-analysis-fit-matrix.md        # Requirements mapped to your experience
-├── network-paths.md                  # Warm intro opportunities (if CSV exists)
 ├── positioning-strategy.md           # How to position yourself, key angles
 ├── cover-letter.md                   # Customized cover letter (ready to send)
 ├── linkedin-messages.md              # Messages to hiring manager, connections
 ├── email-sequence.md                 # Follow-up email templates
-├── interview-prep.md                 # Questions to ask, STAR stories (if Deep)
-├── 30-60-90-day-plan.md              # Execution plan (if Deep + sales role)
-└── competitive-intelligence.md       # Market positioning (if Deep)
+├── network-paths.md                  # Warm intro opportunities (Standard+)
+├── competitive-intelligence.md       # Market positioning (Standard+)
+├── interview-prep.md                 # Questions, STAR stories (Deep)
+├── 30-60-90-day-plan.md              # Execution plan (Deep)
+└── take-home-package.md              # Research summary to attach (Deep)
 ```
 
----
+Your output path is configured in `_config/user-profile.md` under "Output Path."
 
 ## What to Do with Outputs
 
-### Immediate Actions (Day 0)
-1. **Read `company-intelligence.md`** - Understand the company (5 min)
-2. **Read `job-analysis-fit-matrix.md`** - Confirm you're a good fit (3 min)
-3. **Review `cover-letter.md`** - Tweak if needed, then submit application (10 min)
-4. **Check `network-paths.md`** - If warm intro exists, reach out to connection (5 min)
+### Day 0 (Immediate)
+1. Read `company-intelligence.md` for a quick company overview (5 min)
+2. Check `job-analysis-fit-matrix.md` to confirm you're a good fit (3 min)
+3. Review and tweak `cover-letter.md`, then submit your application (10 min)
+4. If `network-paths.md` found warm intros, reach out to your connection (5 min)
 
-### Follow-Up Actions (Day 1-3)
-5. **Use `linkedin-messages.md`** - Reach out to hiring manager or connections
-6. **Use `email-sequence.md`** - If no response, follow up Day 3, Day 7
+### Day 1-3 (Follow Up)
+5. Use `linkedin-messages.md` to reach out to the hiring manager or mutual connections
+6. If no response, use `email-sequence.md` for the Day 3 follow-up
 
-### Interview Prep (If You Get Interview)
-7. **Review `company-intelligence.md`** again - Fresh intel before call
-8. **Review `interview-prep.md`** - Questions to ask, STAR stories
-9. **Use `30-60-90-day-plan.md`** - Present this in interview (if sales role)
+### If You Get an Interview
+7. Re-read `company-intelligence.md` for fresh intel before the call
+8. Review `interview-prep.md` for questions to ask and STAR stories
+9. Use `30-60-90-day-plan.md` as a conversation piece (especially for sales/GTM roles)
 
----
+## Model Recommendations
 
-## Tips for Success
+Different tasks benefit from different Claude models. The short version:
 
-### Do's ✅
-- **Run Quick for most jobs** - Don't over-invest in long shots
-- **Run Deep for dream jobs** - Top 5% get maximum effort
-- **Customize outputs** - Agent gives you 80%, you add 20% personal touch
-- **Act fast** - Research is perishable, apply within 24 hours
-- **Use network paths** - Warm intros convert 5-10x better than cold applications
-- **Follow up** - Use email sequence if no response in 3 days
+| Task | Recommended Model | Why |
+|------|------------------|-----|
+| Scraping, parsing, formatting | Haiku | Cheapest, fastest, good enough for extraction |
+| Research, analysis, cover letters | Sonnet | Best balance of quality and cost |
+| Dream job strategy, competitive analysis | Opus | Highest quality for high-stakes work |
 
-### Don'ts ❌
-- **Don't skip reading outputs** - Agent did research, you need to internalize it
-- **Don't copy/paste blindly** - Review cover letter, tweak to your voice
-- **Don't apply to jobs you're not qualified for** - Agent can't fix poor fit
-- **Don't ignore red flags** - If company-intelligence.md shows problems, reconsider
-- **Don't send generic LinkedIn messages** - Use the agent's custom messages
+**Default to Sonnet for everything.** Only use Opus for Deep research on your top-choice companies where the quality difference justifies 5x the cost.
 
----
+Full cost tables and model selection guidance are in `MODEL-GUIDE.md`.
+
+## Customizing Your Config
+
+### Profile (`_config/user-profile.md`)
+
+This is your identity. The agents read it to understand who you are and what you're targeting.
+
+Common updates:
+- New resume uploaded to `_templates/`
+- Changed target role or industry focus
+- Updated compensation expectations
+- New LinkedIn CSV exported
+- Changed output path
+
+### Preferences (`_config/user-preferences.md`)
+
+This controls how your materials sound. Edit these to tune the agent's writing style.
+
+Key settings:
+- Cover letter tone and length
+- Writing rules (formatting preferences you care about)
+- LinkedIn message style
+- Email follow-up cadence
+- Fit scoring thresholds
+
+Both files are read fresh every run. Edit and save, your next agent run picks up the changes.
+
+## Agent Modes in Detail
+
+### Interactive (`_agents/job-search/interactive.md`)
+
+The agent asks you 6 questions, then runs automatically. Best for first-time users or when you prefer a guided experience.
+
+### Main (`_agents/job-search/main.md`)
+
+Fill in variables at the top of the file (job URL, company name, depth, role type, priority), copy, paste, go. Fastest workflow for experienced users.
+
+### Batch (`_agents/job-search/batch.md`)
+
+Feed it multiple job URLs at once. The agent processes them sequentially, running Quick research on each. Good for weekly pipeline building.
+
+### Multi-Job (`_agents/job-search/multi-job.md`)
+
+Give it 2-5 job URLs at the same company. The agent researches the company once, then analyzes each role, compares them, and recommends which to pursue. Saves time and money versus researching each role separately.
+
+## Tips for Getting the Most Out of It
+
+**Run Quick for volume.** Don't over-invest in long shots. Quick produces strong-enough materials for most applications.
+
+**Customize the last 20%.** The agent gives you 80% of what you need. Read the outputs, add your personal touch, and make the cover letter sound like you.
+
+**Act fast.** Research is perishable. Apply within 24 hours of running the agent.
+
+**Use network paths when they exist.** Warm intros convert significantly better than cold applications. If the agent finds a path, use it.
+
+**Follow up.** Use the email sequence templates. Most candidates never follow up, which means you stand out just by doing it.
+
+**Don't copy/paste blindly.** Read the cover letter, check the company intel for accuracy, and make sure the positioning feels right before sending.
+
+## Parallel Processing
+
+You can run multiple Quick searches simultaneously in different Claude Code sessions. Research 3-5 companies at once, review all the outputs, then run Standard or Deep on the strongest matches.
+
+## Pipeline Tracking
+
+The repo includes `job-applications-tracker.csv` for basic tracking. Update it after each action (applied, outreach sent, interview scheduled, offer, rejected).
 
 ## Troubleshooting
 
-### Agent Doesn't Find Hiring Manager
-**Why**: Job description doesn't mention name, company is stealth, LinkedIn private
-**Fix**:
-- Check company website Team/About page
-- Search "[Company] [role] hiring" on X/Twitter
-- Check LinkedIn job posting (sometimes hiring manager comments)
-- If still can't find: Apply anyway, agent will generate generic outreach
+### Agent Doesn't Find the Hiring Manager
+The job description might not include a name, the company might be stealthy, or LinkedIn profiles could be private. Check the company website Team page, search "[Company] [role] hiring" on X/Twitter, or look at who posted the LinkedIn job listing. The agent still generates outreach templates even without a specific name.
 
 ### Network Path Analysis Finds Nothing
-**Why**: LinkedIn CSV doesn't have connections at this company
-**Fix**:
-- Search your email for anyone at that company (past intros, conferences, etc.)
-- Check if any of your contacts worked there previously (they might still know people)
-- Go cold: Agent still generates cold outreach messages
+This means your LinkedIn CSV doesn't have connections at that company, or you haven't exported it yet. Try searching your email for past contacts there. The agent still generates cold outreach messages.
 
 ### Cover Letter Feels Too Long
-**Why**: Agent includes all research (comprehensive but lengthy)
-**Fix**:
-- Edit down to 1 page (keep intro, 2-3 key points, strong close)
-- Move research details to "take-home package" attachment (if Deep)
-- Focus on: Why you, why now, what you'll do Week 1
+Edit down to one page. Keep the intro, 2-3 key points, and a strong close. If you ran Deep research, move the extra detail into the take-home package attachment.
 
 ### Agent Says "Gap" in Fit Matrix
-**Why**: Job requires skill/experience you don't have
-**Fix**:
-- Address proactively in cover letter ("While I haven't done X, I've done similar Y...")
-- Show how you'd close gap quickly ("I'd ramp on X in first 30 days by...")
-- Position as "growth opportunity" not "deal-breaker"
-- If gap is major (e.g., you've never done sales but role needs 10 years experience), reconsider applying
+That's useful information. Address it proactively in your cover letter ("While I haven't done X, my experience with Y translates directly because..."). If the gap is fundamental (the role needs 10 years of something you've never done), it might not be the right fit.
 
----
+### Outputs Feel Generic
+Make sure the job URL is publicly accessible (not behind a login). Add more context in the "Special Instructions" field, like what specifically excites you about the role or any inside knowledge you have about the company.
 
-## Advanced Usage
-
-### Running Multiple Jobs in Parallel
-1. Open 3 terminal windows
-2. Run Quick research on 3 different jobs simultaneously
-3. Review all outputs, prioritize best matches
-4. Run Standard on top 2, Deep on #1
-
-### A/B Testing Cover Letters
-1. Run agent, get cover letter v1
-2. Edit cover letter, create v2 (different angle)
-3. Apply to similar roles with v1 vs v2
-4. Track which gets more responses
-5. Iterate
-
-### Building a Pipeline Tracker
-Create simple spreadsheet:
-```
-| Company | Role | Stage | Last Touch | Next Action | Hiring Manager | Network Path | Applied Date |
-|---------|------|-------|------------|-------------|----------------|--------------|--------------|
-| Acme    | AE   | Applied | 11/6    | Follow up Day 3 | Sarah J. | 2nd via Mike | 11/6/25 |
-```
-
-Update after each action (applied, reached out, interviewed, offer, rejected)
-
----
-
-## Examples
-
-### Example 1: Quick Application
-```
-JOB_URL: https://jobs.lever.co/startup/ae-role
-COMPANY_NAME: startup-xyz
-RESEARCH_DEPTH: Quick
-ROLE_TYPE: AE
-YOUR_PRIORITY: growth + equity
-```
-**Time**: 15-20 min
-**Output**: 7 files
-**Use Case**: Decent fit, applying to 10 roles this week
-
-### Example 2: Strong Match
-```
-JOB_URL: https://boards.greenhouse.io/bigco/head-of-sales
-COMPANY_NAME: bigco-series-b
-RESEARCH_DEPTH: Standard
-ROLE_TYPE: Head of Sales
-YOUR_PRIORITY: equity + team building
-```
-**Time**: 30-45 min
-**Output**: 10 files (includes network analysis)
-**Use Case**: Great fit, excited about company
-
-### Example 3: Dream Job
-```
-JOB_URL: https://jobs.ashbyhq.com/dreamco/vp-sales
-COMPANY_NAME: dreamco
-RESEARCH_DEPTH: Deep
-ROLE_TYPE: VP Sales
-YOUR_PRIORITY: equity + leadership + culture
-```
-**Time**: 60+ min
-**Output**: 12 files (includes 30/60/90, interview prep, take-home package)
-**Use Case**: Perfect fit, top 1% opportunity
-
----
-
-## Updating Templates
-
-### Adding New Cover Letter Templates
-If you have different cover letter styles by role:
-```
-~/Documents/Coding/company-research-assistant/_templates/
-├── Andrew Carlson Resume 2025.pdf
-├── About Andy Carlson Intro 2025.pdf (default)
-├── cover-letter-AE.md (for AE roles)
-├── cover-letter-VP-Sales.md (for VP Sales roles)
-├── cover-letter-RevOps.md (for RevOps roles)
-└── linkedin-contacts.csv
-```
-
-Modify main agent to use role-specific template:
-```
-If ROLE_TYPE = "AE", use cover-letter-AE.md
-If ROLE_TYPE = "VP Sales", use cover-letter-VP-Sales.md
-etc.
-```
-
-### Updating Resume
-1. Export new resume to PDF
-2. Save to `~/Documents/Coding/company-research-assistant/_templates/Andrew Carlson Resume 2025.pdf` (replace old)
-3. Agent will use new version on next run
-
----
+### Config Not Being Picked Up
+Check that your files are named exactly `_config/user-profile.md` and `_config/user-preferences.md`. The agents look for these specific filenames.
 
 ## FAQ
 
-**Q: How accurate is the network path analysis?**
-A: Depends on your LinkedIn CSV being current. Export fresh CSV every 3-6 months.
+**Can I use this for non-sales roles?**
+Yes. The 30/60/90 day plan and some sales-specific outputs are most useful for sales and GTM roles, but the core research, cover letter, and outreach tools work for any position. The agent adapts based on the role type you specify.
 
-**Q: Can I use this for non-sales roles?**
-A: Yes, but 30/60/90 plan and some sales-specific outputs won't apply. Agent adapts based on ROLE_TYPE.
+**What if I don't have a LinkedIn CSV?**
+Everything works except network path analysis. You'll get all other outputs. The agent generates cold outreach messages instead of warm intro paths.
 
-**Q: What if I don't have LinkedIn CSV?**
-A: Agent still works, just skips network path analysis. You'll get all other outputs.
+**How often should I re-export my LinkedIn contacts?**
+Every 3-6 months, or after a networking push when you've added a lot of new connections.
 
-**Q: How often should I run this?**
-A: Quick: 10+ times per week. Standard: 2-3 times per week. Deep: 1-2 times per month.
+**Can I share the research with a recruiter?**
+Absolutely. The Deep research package is designed as a "take-home" that demonstrates you've done your homework. Recruiters and hiring managers both respond well to that level of preparation.
 
-**Q: Can I share outputs with recruiter?**
-A: Yes! Deep research package is designed as "take-home" to show you did homework.
-
-**Q: What if company research finds red flags?**
-A: Agent will flag them in `company-intelligence.md`. Decide if deal-breakers or acceptable risks.
-
----
-
-## Support
-
-**Issues?** Check:
-1. Did you fill in all USER INPUTS?
-2. Is your resume/cover letter in `_templates/` folder?
-3. Is JOB_URL accessible (not behind login)?
-4. Is company name spelled correctly (for folder naming)?
-
-**Feature Requests**:
-- Future: Google Docs integration
-- Future: Notion DB tracker
-- Future: Automated follow-up reminders
-
----
-
-## Success Metrics
-
-Track these over time:
-- **Application rate**: How many Quick/Standard/Deep runs per week?
-- **Response rate**: % of applications that get response
-- **Interview rate**: % that lead to interviews
-- **Network path success**: Do warm intros convert better?
-- **Time saved**: How much faster is this than manual research?
-
-**Goal**:
-- Quick: 80% of applications (volume game)
-- Standard: 15% of applications (strong matches)
-- Deep: 5% of applications (dream jobs)
-- Overall response rate: >20% (vs industry average ~2-5%)
-
----
-
-**Ready to hunt? Open `_agents/job-hunt-assassin-main.md` and start your first run!** 🎯
+**What if company research finds red flags?**
+The agent flags them in `company-intelligence.md`. Read them carefully and decide whether they're deal-breakers or acceptable risks. Better to know before you invest time in the process.
