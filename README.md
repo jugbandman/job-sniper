@@ -202,3 +202,7 @@ The normal application process looks like this: submit a generic resume, maybe w
 This tool flips that. Every application comes with company-specific research, a tailored cover letter, hiring manager outreach, and (for dream jobs) a take-home research package that proves you've done the homework. When a hiring manager sees that level of preparation, you stand out.
 
 It works because it treats job search like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently.
+
+---
+
+Useful? Buy Andy a coffee (or beer): **venmo:@jugbandman**
