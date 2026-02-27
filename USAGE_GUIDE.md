@@ -1,12 +1,12 @@
 # Usage Guide
 
-Detailed instructions for getting the most out of the Company Research Assistant.
+Detailed instructions for getting the most out of Job Sniper.
 
 ## What This Tool Does
 
-The Company Research Assistant is an automated agent that researches companies, finds hiring managers, analyzes your network, and generates customized application materials. It treats job search like enterprise sales: research deeply, personalize heavily, multi-thread your outreach.
+Job Sniper is a job search tool that treats every application like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently. It researches companies, finds hiring managers, analyzes your network, and generates customized application materials.
 
-**Philosophy**: Don't be another resume in the pile. Be the candidate who understands the company better than their own employees.
+Don't be another resume in the pile. Be the candidate who understands the company better than their own employees.
 
 ## Quick Start (5 Minutes)
 

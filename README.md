@@ -1,10 +1,10 @@
-# Company Research Assistant
+# Job Sniper
 
-Treats job search like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently.
+**Treats job search like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently.**
 
 An AI-powered agent system that researches companies, analyzes job postings, identifies hiring managers, maps your network, and generates customized application materials. It runs on [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and produces a folder of ready-to-use files for every job you target.
 
-**Philosophy**: Don't be another resume in the pile. Be the candidate who did more research than the hiring manager.
+Don't be another resume in the pile. Be the candidate who did more research than the hiring manager.
 
 ## How It Works
 

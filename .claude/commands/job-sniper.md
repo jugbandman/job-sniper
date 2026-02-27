@@ -1,11 +1,11 @@
 ---
 name: job-sniper
-description: Run the Company Research Assistant for job search. Handles first-time setup, config check, and all research modes (interactive, main, batch, multi-job). Invoke with /job-sniper [url or mode].
+description: Job search tool that treats every application like a sales process. Handles first-time setup, config check, and all research modes (interactive, main, batch, multi-job). Invoke with /job-sniper [url or mode].
 ---
 
 # Job Sniper
 
-Run the Company Research Assistant for job search research and application generation. Auto-detects first-time vs returning user and routes accordingly.
+A job search tool that treats every application like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently. Auto-detects first-time vs returning user and routes accordingly.
 
 ## Key Paths (Relative to Repo Root)
 

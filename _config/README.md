@@ -1,6 +1,6 @@
 # Configuration
 
-This folder contains your personal configuration for the Company Research Assistant. The agents read these files to customize their output for you.
+This folder contains your personal configuration for Job Sniper. The agents read these files to customize their output for you.
 
 ## Files
 

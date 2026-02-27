@@ -1,6 +1,6 @@
-# Company Research Assistant
+# Job Sniper
 
-AI-powered company research agent. Job search is one "lens" among several (prospect research, market intel, general company deep dives).
+AI-powered job search tool that treats every application like a sales process. Job search is the primary lens, with future support for prospect research, market intel, and general company deep dives.
 
 ## Key Files
 
