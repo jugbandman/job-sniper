@@ -11,9 +11,9 @@ AI-powered company research agent. Job search is one "lens" among several (prosp
 
 ## How to Run
 
-1. Configure your profile in `_config/user-profile.md` (or copy from `_config/user-profile.example.md`)
-2. Choose an agent from `_agents/job-search/`
-3. Fill in the inputs and run
+**Recommended:** Use the `/job-sniper` command. It handles setup, config detection, and mode selection automatically.
+
+**Manual:** Configure your profile in `_config/user-profile.md` (or copy from `_config/user-profile.example.md`), choose an agent from `_agents/job-search/`, fill in the inputs and run.
 
 ## Output Location
 

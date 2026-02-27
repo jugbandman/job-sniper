@@ -1,5 +1,7 @@
 # Company Research Assistant
 
+Treats job search like a sales process: research deeply, personalize heavily, multi-thread your outreach, and follow up consistently.
+
 An AI-powered agent system that researches companies, analyzes job postings, identifies hiring managers, maps your network, and generates customized application materials. It runs on [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and produces a folder of ready-to-use files for every job you target.
 
 **Philosophy**: Don't be another resume in the pile. Be the candidate who did more research than the hiring manager.
@@ -18,26 +20,28 @@ You paste an agent prompt into Claude Code, the agent reads your config, researc
 
 1. **Clone this repo** (skip this if you already have it)
    ```bash
-   git clone https://github.com/your-username/company-research-assistant.git
-   cd company-research-assistant
+   git clone https://github.com/jugbandman/job-sniper.git
+   cd job-sniper
    ```
 
 2. **Install Claude Code** (skip this if you already have it)
    Follow the [official install guide](https://docs.anthropic.com/en/docs/claude-code). You need a Claude API key or a Claude Pro/Max subscription.
 
-3. **Run the setup agent** to create your personal config
+3. **Open the repo in Claude Code and run `/job-sniper`**
+   ```bash
+   claude   # launch Claude Code from the repo root
    ```
-   Open _agents/setup.md, copy the entire file, paste into Claude Code
-   ```
-   The setup agent asks about your background, target roles, and preferences, then generates your `_config/user-profile.md` and `_config/user-preferences.md` files. Takes about 5 minutes.
+   Then type `/job-sniper`. On first run, it detects you're a new user and walks you through setup: checks prerequisites, finds your resume, runs a 5-minute interview to build your profile, and generates your config files.
 
-4. **Add your resume** to `_templates/` (PDF or markdown)
+4. **Add your resume** to `_templates/resumes/` (PDF or markdown) if the setup didn't find it
 
-5. **Pick a job and run an agent**
+5. **Run it again with a job URL**
    ```
-   Open _agents/job-search/interactive.md, copy the entire file, paste into Claude Code
+   /job-sniper https://jobs.lever.co/some-company/some-role
    ```
-   Answer 6 questions (job URL, company name, research depth, role type, your priority, special notes). The agent does the rest.
+   It reads your config, researches the company, and generates a full application package.
+
+**Manual setup alternative:** If you prefer not to use the `/job-sniper` command, you can copy `_config/user-profile.example.md` to `_config/user-profile.md`, edit it by hand, then copy-paste any agent prompt from `_agents/job-search/` directly into Claude Code.
 
 ## Prerequisites
 
