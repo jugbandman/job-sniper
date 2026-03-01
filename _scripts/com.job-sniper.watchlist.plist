@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.job-sniper.watchlist</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/andycarlson/Documents/Coding/job-sniper/_scripts/run-watchlist.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/andycarlson/Documents/Coding/job-sniper</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>7</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/job-sniper-watchlist.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/job-sniper-watchlist.error.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/andycarlson/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/andycarlson</string>
+    </dict>
+</dict>
+</plist>

@@ -18,6 +18,9 @@ A job search tool that treats every application like a sales process: research d
 - **Templates:** `_templates/`
 - **Activity log:** `job-tracker.md`
 - **Cache:** `_cache/` (watchlist cache, pulse check timestamps)
+- **Watchlist alerts:** `_cache/watchlist-alerts.md` (from background agent, if configured)
+- **Watchlist agent:** `_agents/watchlist-agent.md` (standalone background agent)
+- **Automation scripts:** `_scripts/` (shell wrapper, launchd plist, setup docs)
 - **Model guide:** `MODEL-GUIDE.md`
 
 ## On Invocation
@@ -280,9 +283,44 @@ Update the Stats section at the bottom after every change:
 
 Runs automatically on every `/job-sniper` invocation (before mode selection).
 
-### How It Works
+### Step 1: Check for Background Alerts
 
-1. Read `_config/watchlist.md` for watched companies
+Read `_cache/watchlist-alerts.md`. If it exists and has content under "New Roles Found" (not just "None"):
+
+1. Display the new matches:
+
+```
+Watchlist (background): X new roles found since last check
+
+[Company A]
+  - [Title] - [URL]
+  - [Title] - [URL]
+
+[Company B]
+  - [Title] - [URL]
+
+Want to research any of these? (enter numbers, "all", or "skip")
+```
+
+2. If the alert file also has "Pulse Check" entries showing removed postings, display those too:
+
+```
+Pulse check: X applications may have changed
+
+  [Company] - [Role]: posting appears removed (was "Applied")
+    Good time to follow up? Last contact was [date from tracker]
+
+Want to update any statuses or send follow-ups?
+```
+
+3. After the user responds (researches roles, updates statuses, or skips), archive the alert file by renaming it to `_cache/watchlist-alerts-YYYY-MM-DD.md`.
+4. Continue to **Mode Selection**.
+
+### Step 2: If No Background Alerts, Run Live Check
+
+If `_cache/watchlist-alerts.md` does not exist, is empty, or only contains "No companies in watchlist":
+
+1. Read `_config/watchlist.md` for watched companies. If empty or missing, skip to **Mode Selection**.
 2. Read `_cache/watchlist-seen.md` for previously seen postings (create if missing)
 3. For each watched company:
    - Search their careers URL (web fetch) or web search "[company] careers [role filter keywords]"
@@ -296,17 +334,34 @@ Runs automatically on every `/job-sniper` invocation (before mode selection).
 Watchlist: X new roles found
 
 [Company A]
-  → [Title] - [Location] - [URL]
-  → [Title] - [Location] - [URL]
+  - [Title] - [Location] - [URL]
 
 [Company B]
-  → [Title] - [Location] - [URL]
+  - [Title] - [Location] - [URL]
 
 Want to research any of these? (enter numbers, "all", or "skip")
 ```
 
 6. If they select roles, process them. If they skip, continue to pulse check.
 7. If no new matches: show nothing (don't clutter with "no updates").
+
+### Live Pulse Check (if no background alerts)
+
+After the live watchlist check, run the pulse check:
+
+1. Read `job-tracker.md` for all rows with status `Researched`, `Applied`, or `Outreach Sent`
+2. For each active application URL:
+   - Attempt to fetch the URL (web fetch, check if page loads)
+   - If the posting returns a 404, redirect to a "position filled" page, or the job is no longer listed, mark as **possibly closed**
+3. If any changes detected, show them and ask user to confirm status updates
+4. If the user confirms a posting is closed, update the tracker row status to `Position Closed`
+5. If no changes detected: show nothing.
+
+### When to Skip Checks Entirely
+
+- Skip all checks if `/job-sniper` was invoked with a URL (they're going straight to research, don't slow them down)
+- Skip live pulse check if there are no active applications in the tracker
+- Skip live pulse check if last check was less than 24 hours ago (read timestamp from `_cache/pulse-last-check.txt`)
 
 ### Cache Format (`_cache/watchlist-seen.md`)
 
@@ -318,40 +373,6 @@ Last checked: YYYY-MM-DD
 - [Job Title] | [URL] | first seen YYYY-MM-DD
 - [Job Title] | [URL] | first seen YYYY-MM-DD
 ```
-
----
-
-## Application Pulse Check
-
-Runs automatically after the watchlist check.
-
-### How It Works
-
-1. Read `job-tracker.md` for all rows with status `Researched`, `Applied`, or `Outreach Sent`
-2. For each active application URL:
-   - Attempt to fetch the URL (web fetch, check if page loads)
-   - If the posting returns a 404, redirect to a "position filled" page, or the job is no longer listed → mark as **possibly closed**
-3. If any changes detected, show them:
-
-```
-Pulse check: X applications may have changed
-
-⚠ [Company] - [Role]: posting appears to be removed (was "Applied")
-   → Good time to follow up? Last contact was [date from tracker]
-
-✓ [Company] - [Role]: still live
-
-Want to update any statuses or send follow-ups?
-```
-
-4. If the user confirms a posting is closed, update the tracker row status to `Position Closed`
-5. If no changes detected: show nothing.
-
-### When to Skip
-
-- Skip pulse check if `/job-sniper` was invoked with a URL (they're going straight to research, don't slow them down)
-- Skip if there are no active applications in the tracker
-- Skip if last pulse check was less than 24 hours ago (read timestamp from `_cache/pulse-last-check.txt`)
 
 ---
 

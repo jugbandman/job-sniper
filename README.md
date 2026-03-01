@@ -103,6 +103,14 @@ Add companies to your watchlist anytime:
 | Figma     | https://www.figma.com/careers/     | sales leadership         |
 ```
 
+### Background Monitoring (Optional)
+
+Want Job Sniper to check your watchlist automatically, even when you're not running it? Set up the background agent to run daily via macOS launchd.
+
+The agent runs on the Haiku model ($0.05-$0.15 per check) and writes alerts to a file. Next time you run `/job-sniper`, your new matches appear instantly. You also get a macOS notification when new roles are found.
+
+Setup takes 2 minutes. See `_scripts/README.md` for instructions.
+
 ## Research Depths
 
 | Depth | Time | Cost Estimate | Files | Best For |
@@ -186,6 +194,7 @@ job-sniper/
 │
 ├── _agents/                           # Agent prompts (the brains)
 │   ├── setup.md                       # Interactive onboarding agent
+│   ├── watchlist-agent.md             # Background watchlist checker (runs via claude -p)
 │   ├── core/                          # Shared research capabilities
 │   │   └── company-research.md        # General company research (future)
 │   └── job-search/                    # Job search agents
@@ -193,6 +202,11 @@ job-sniper/
 │       ├── batch.md                   # Batch URL processing
 │       ├── interactive.md             # Guided Q&A mode
 │       └── multi-job.md              # Compare roles at same company
+│
+├── _scripts/                          # Automation (background monitoring)
+│   ├── README.md                      # Setup instructions for launchd
+│   ├── run-watchlist.sh               # Shell wrapper for background agent
+│   └── com.job-sniper.watchlist.plist # macOS launchd schedule config
 │
 └── _templates/                        # Your materials
     ├── README.md                      # Template documentation

@@ -388,7 +388,32 @@ Style and formatting preferences for generated materials.
 | Tier 3 | Under 60% | Stretch, apply only with referral |
 ```
 
-### Step 9: Save and Confirm
+### Step 9: Introduce Watchlist (Optional)
+
+After config files are generated, introduce the watchlist feature:
+
+```
+One more thing: you can set up a watchlist of companies to monitor for new roles.
+
+Add companies to _config/watchlist.md with their careers page URL, and Job
+Sniper will check for new matching roles:
+- Every time you run /job-sniper (built-in)
+- On a daily schedule (optional background agent, see _scripts/README.md)
+
+Want to add any companies to watch now? Just tell me the company names and
+I'll find their careers pages and add them.
+
+Or skip this and add companies later by editing _config/watchlist.md.
+```
+
+If the user names companies:
+- Web search for each company's careers page URL
+- Add rows to the watchlist table in `_config/watchlist.md`
+- Use the user's target titles from user-profile.md as the default Role Filter
+
+If they skip, move to Step 10.
+
+### Step 10: Save and Confirm
 
 1. Write both files to `_config/`
 2. Confirm with a summary of everything that was set up:
@@ -398,6 +423,7 @@ Setup complete! Here's what I've configured:
 
 Profile: _config/user-profile.md
 Preferences: _config/user-preferences.md
+Watchlist: _config/watchlist.md ([X companies] or "empty, add companies anytime")
 
 Materials imported:
 - [list of files copied to _templates/]
@@ -406,6 +432,9 @@ Materials imported:
 Writing style extracted from your cover letter sample (you can tweak in user-preferences.md)
 
 You can edit these files anytime. The agents read them fresh each run.
+
+Background monitoring: Run `cat _scripts/README.md` for setup instructions
+to get daily alerts about new roles at your watched companies.
 
 Ready to search! Type /job-sniper to get started, or paste a job URL.
 ```
