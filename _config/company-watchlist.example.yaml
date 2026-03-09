@@ -1,0 +1,147 @@
+# Company Watchlist
+# Built from Andy's resume industries: Dev Tools, Agentic AI, DevOps, SaaS Education, Fintech B2B
+# 
+# CUSTOMIZE THIS:
+# - Add companies you want to watch
+# - Remove companies that don't fit
+# - Set priority (tier) based on how often to check
+
+# ============================================================================
+# TIER 1: Direct Competitors / Core Markets
+# Check 3-4x daily - these are the hottest for Andy's background
+# ============================================================================
+
+tier_1_direct:
+  - name: Atlassian
+    careers_url: https://careers.atlassian.com
+    industry: Developer Tools / Agile
+    priority: high
+    
+  - name: Databricks
+    careers_url: https://databricks.com/careers
+    industry: AI / Data
+    priority: high
+    
+  - name: Stripe
+    careers_url: https://stripe.com/jobs
+    industry: Developer Tools / Payments
+    priority: high
+    
+  - name: Anthropic
+    careers_url: https://www.anthropic.com/careers
+    industry: AI / Agentic AI
+    priority: high
+    
+  - name: Zapier
+    careers_url: https://zapier.com/jobs
+    industry: Workflow Automation
+    priority: high
+    
+  - name: HashiCorp
+    careers_url: https://www.hashicorp.com/careers
+    industry: Infrastructure Automation
+    priority: high
+    
+  - name: Snyk
+    careers_url: https://snyk.io/jobs
+    industry: Developer Security
+    priority: high
+    
+  - name: DataDog
+    careers_url: https://careers.datadoghq.com
+    industry: DevOps / Observability
+    priority: high
+
+# ============================================================================
+# TIER 2: Adjacent Markets
+# Check 1-2x daily - similar buyer, GTM, complexity
+# ============================================================================
+
+tier_2_adjacent:
+  - name: HubSpot
+    careers_url: https://www.hubspot.com/careers
+    industry: Sales / Marketing SaaS
+    priority: medium
+    
+  - name: Notion
+    careers_url: https://www.notion.so/careers
+    industry: SaaS Collaboration
+    priority: medium
+    
+  - name: Figma
+    careers_url: https://www.figma.com/careers
+    industry: Design SaaS
+    priority: medium
+    
+  - name: PagerDuty
+    careers_url: https://www.pagerduty.com/careers
+    industry: DevOps / Incident Response
+    priority: medium
+    
+  - name: Sumo Logic
+    careers_url: https://careers.sumologic.com
+    industry: Observability
+    priority: medium
+    
+  - name: Okta
+    careers_url: https://www.okta.com/careers
+    industry: Identity / Security
+    priority: medium
+    
+  - name: Vercel
+    careers_url: https://vercel.com/careers
+    industry: Developer Tools / Frontend
+    priority: medium
+
+# ============================================================================
+# TIER 3: Great Companies (General Watchlist)
+# Check 1x daily - proven PMF, strong growth, good places to work
+# ============================================================================
+
+tier_3_great:
+  - name: OpenAI
+    careers_url: https://openai.com/careers
+    industry: AI
+    priority: low
+    
+  - name: GitHub
+    careers_url: https://github.com/about/careers
+    industry: Developer Tools
+    priority: low
+    
+  - name: Canva
+    careers_url: https://www.canva.com/careers
+    industry: Design SaaS
+    priority: low
+    
+  - name: Shopify
+    careers_url: https://www.shopify.com/careers
+    industry: E-Commerce Platform
+    priority: low
+    
+  - name: Twilio
+    careers_url: https://www.twilio.com/careers
+    industry: Communications API
+    priority: low
+
+# ============================================================================
+# HOW TO CUSTOMIZE
+# ============================================================================
+# 
+# ADD a company:
+# - name: CompanyName
+#   careers_url: https://company.com/careers (required for scraping)
+#   industry: Category (for grouping)
+#   priority: high/medium/low (high = check 3-4x daily, medium = 1-2x, low = 1x)
+#
+# REMOVE: Just delete the block
+#
+# CHANGE PRIORITY: Update the priority field
+#   - high = multiple daily runs
+#   - medium = 1-2x daily
+#   - low = 1x daily (or skip)
+#
+# NOTES:
+# - careers_url should point to their main careers page or ATS
+# - We'll scrape this to find new postings
+# - Add any custom notes in comments above the block

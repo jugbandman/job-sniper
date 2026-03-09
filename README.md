@@ -86,6 +86,51 @@ The setup agent walks you through this during onboarding, and the agents pick up
 - Multiple jobs this week? Use **Batch**
 - Same company, multiple roles? Use **Multi-Job**
 
+## Discovery Features
+
+Beyond scanning Gmail alerts, job-sniper includes two active discovery tools:
+
+### Response Watch
+
+Scans Gmail for replies from companies in your active pipeline. Run it after sending outreach to catch responses quickly.
+
+```
+/job-sniper response-watch
+```
+
+It builds a company list from your tracker and Obsidian applying/interviewing folders, derives email domains, searches Gmail for replies in the last 24 hours, and sends a Slack DM for any interested responses or rejections.
+
+### Build Watchlist
+
+Research-driven watchlist expansion. Analyzes your background and current watchlist, finds competitor companies, adjacent markets, and unconventional role titles you might be missing.
+
+```
+/job-sniper build-watchlist
+```
+
+It proposes tiered additions to `_config/company-watchlist.yaml` and confirms before writing anything. Run it monthly or whenever your pipeline feels thin.
+
+**First time:** Copy the example config first:
+```bash
+cp _config/company-watchlist.example.yaml _config/company-watchlist.yaml
+```
+
+### Python Scoring Engine (Optional)
+
+The `src/` directory contains a Python-based scoring engine that scores jobs deterministically using 6 weighted factors. It complements the LLM-based alert scanner for bulk processing or when you want reproducible scores you can tune via YAML.
+
+```bash
+pip install -r requirements.txt
+python3 run-discovery.py test        # verify setup with mock data
+python3 run-discovery.py --mode score  # score jobs in JSONL cache
+```
+
+Tune scoring by editing `_config/scoring-weights.yaml`. No code changes needed.
+
+See `ARCHITECTURE-JOB-DISCOVERY.md` for the full discovery architecture.
+
+---
+
 ## Watchlist & Pulse Check
 
 Every time you run `/job-sniper`, it automatically:
@@ -143,6 +188,80 @@ Every research run creates a folder of markdown files at your configured output 
 - `30-60-90-day-plan.md` - Execution plan (especially useful for sales/GTM roles)
 - `take-home-package.md` - Research summary to attach with your application
 
+## Job Alerts (Email Discovery)
+
+The alert scanner monitors your Gmail for job alert emails from LinkedIn, Indeed, Greenhouse, Lever, Wellfound, Glassdoor, ZipRecruiter, BuiltIn Colorado, and Otta. It extracts new postings, scores them against your profile, deduplicates against a local cache, and writes a daily digest to your Obsidian vault. Tier 1 matches trigger a Slack DM and a macOS notification.
+
+The scanner runs on a schedule via macOS launchd (every 3 hours from 6am to 9pm) and costs roughly $0.05-$0.20 per run on the Haiku model.
+
+### How It Works
+
+1. **Email scanning** - Reads job alert emails from Gmail using sender/subject patterns configured in `_config/alert-sources.md`
+2. **Deduplication** - Checks extracted job URLs against `_cache/seen-jobs.jsonl` (90-day rolling window) so you only see new postings
+3. **Job fetching** - Fetches the full posting page to extract requirements, salary, location
+4. **Scoring** - Scores each job 0-100 against your profile (role fit, company stage, technical buyer, location, compensation) and assigns Tier 1/2/3
+5. **Output** - Writes a markdown digest to `~/Documents/Obsidian Vault/80-Projects/job-search/_digests/YYYY-MM-DD-job-alerts.md`
+6. **Notifications** - Sends a Slack DM and macOS notification for any Tier 1 matches
+
+### Setup
+
+1. Configure your alert sources (or use the defaults):
+   ```bash
+   open _config/alert-sources.md
+   ```
+
+2. Make the runner script executable:
+   ```bash
+   chmod +x _scripts/run-alerts.sh
+   ```
+
+3. Copy the plist to your LaunchAgents:
+   ```bash
+   cp _scripts/com.job-sniper.alerts.plist ~/Library/LaunchAgents/
+   ```
+
+4. Load the agent:
+   ```bash
+   launchctl load ~/Library/LaunchAgents/com.job-sniper.alerts.plist
+   ```
+
+5. Verify it loaded:
+   ```bash
+   launchctl list | grep job-sniper.alerts
+   ```
+
+### Manual Test Run
+
+```bash
+bash _scripts/run-alerts.sh
+```
+
+Check results:
+```bash
+cat ~/Documents/Obsidian\ Vault/80-Projects/job-search/_digests/$(date +%Y-%m-%d)-job-alerts.md
+cat _cache/logs/alerts-*.log
+```
+
+### Integration with Research Agents
+
+The digest includes an "Action" line for every scored job: `Run /job-sniper [url] for full research`. This connects discovery to the existing research workflow. Find an interesting posting in your digest, run `/job-sniper` on it, and the research agents handle the rest.
+
+### Adding Custom Alert Sources
+
+Edit `_config/alert-sources.md` to add any email source you receive job alerts from. Any Gmail search query works. Test your query in Gmail search first, then add a row to the table.
+
+### Scoring Breakdown
+
+| Category | Max Points | What It Measures |
+|----------|-----------|-----------------|
+| Role Fit | 25 | Title match to your target roles |
+| Company Stage | 20 | Series A-C, B2B SaaS, $5M-$50M ARR |
+| Technical Buyer | 20 | Sells to eng/data/devops teams |
+| Location | 15 | Denver/Boulder, remote, or compatible timezone |
+| Compensation | 20 | $200K+ OTE target |
+
+Jobs scoring 80+ are Tier 1 (apply now). 60-79 are Tier 2 (worth reviewing). 40-59 are Tier 3 (stretch). Hard filters (requires relocation, pure SMB, no PMF, wrong industry) instantly disqualify regardless of score.
+
 ## Configuration
 
 Your personal setup lives in `_config/`. Two files control everything:
@@ -180,6 +299,10 @@ job-sniper/
 ├── QUICK_START.md                     # Condensed getting-started guide
 ├── USAGE_GUIDE.md                     # Detailed usage instructions
 ├── MODEL-GUIDE.md                     # Model recommendations and cost estimates
+├── ARCHITECTURE-JOB-ALERTS.md        # Alert scanner architecture
+├── ARCHITECTURE-JOB-DISCOVERY.md     # Discovery subsystem architecture
+├── run-discovery.py                   # Python scoring engine CLI
+├── requirements.txt                   # Python dependencies (for scoring engine)
 ├── job-tracker.md                     # Activity log (auto-created, gitignored)
 │
 ├── _config/                           # Your personal configuration
@@ -187,16 +310,38 @@ job-sniper/
 │   ├── user-profile.md                # Your background and targets (you create this)
 │   ├── user-profile.example.md        # Example configuration for reference
 │   ├── user-preferences.md            # Writing style and preferences (you create this)
-│   └── watchlist.md                   # Companies to monitor for new postings
+│   ├── watchlist.md                   # Companies to monitor for new postings
+│   ├── alert-sources.md              # Gmail patterns for job alert scanning
+│   ├── scoring-weights.yaml           # Python scorer: 6-factor weights + filters (tunable)
+│   ├── company-watchlist.yaml         # Your 3-tier target company list (gitignored)
+│   └── company-watchlist.example.yaml # Example watchlist to start from
 │
 ├── _cache/                            # Watchlist cache and pulse check data (gitignored)
 │   └── README.md
 │
+├── src/                               # Python scoring engine modules
+│   ├── models.py                      # Job, ScoringResult dataclasses
+│   ├── scorer.py                      # 6-factor scoring algorithm + resume picker
+│   ├── storage.py                     # JSONL read/write with deduplication
+│   ├── config.py                      # Config loader
+│   ├── email_scanner.py               # Email parsing for Built In, LinkedIn, WTJ
+│   ├── response_scanner.py            # Domain extraction and email matching
+│   ├── notifier.py                    # Telegram notifications (optional)
+│   ├── mock_data.py                   # Test data generator
+│   └── ...                            # Additional modules (researcher, emailer, scrapers)
+│
+├── templates/                         # HTML email templates (for emailer module)
+│   ├── daily-digest.html              # Daily digest template
+│   └── immediate-alert.html           # Immediate alert template
+│
 ├── _agents/                           # Agent prompts (the brains)
 │   ├── setup.md                       # Interactive onboarding agent
 │   ├── watchlist-agent.md             # Background watchlist checker (runs via claude -p)
-│   ├── core/                          # Shared research capabilities
-│   │   └── company-research.md        # General company research (future)
+│   ├── job-alerts/                    # Email-based job discovery
+│   │   └── scanner.md                # Gmail alert scanner (runs via claude -p)
+│   ├── job-discovery/                 # Pipeline monitoring and watchlist building
+│   │   ├── response-watch.md          # Scan Gmail for company replies
+│   │   └── build-watchlist.md         # Research and expand target company list
 │   └── job-search/                    # Job search agents
 │       ├── main.md                    # Single job deep dive
 │       ├── batch.md                   # Batch URL processing
@@ -205,8 +350,10 @@ job-sniper/
 │
 ├── _scripts/                          # Automation (background monitoring)
 │   ├── README.md                      # Setup instructions for launchd
-│   ├── run-watchlist.sh               # Shell wrapper for background agent
-│   └── com.job-sniper.watchlist.plist # macOS launchd schedule config
+│   ├── run-watchlist.sh               # Shell wrapper for watchlist agent
+│   ├── com.job-sniper.watchlist.plist # macOS launchd schedule (daily 7am)
+│   ├── run-alerts.sh                  # Shell wrapper for alert scanner
+│   └── com.job-sniper.alerts.plist   # macOS launchd schedule (every 3hrs)
 │
 └── _templates/                        # Your materials
     ├── README.md                      # Template documentation

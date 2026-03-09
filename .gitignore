@@ -17,10 +17,16 @@ job-tracker.md
 # Watchlist (personal company targets)
 _config/watchlist.md
 
-# Cache (watchlist seen postings, pulse check timestamps)
+# Discovery config (personal company targets and scoring - use *.example.yaml as templates)
+_config/company-watchlist.yaml
+_config/user-profile.json
+
+# Cache (watchlist seen postings, pulse check timestamps, discovery JSONL)
 _cache/*
 !_cache/README.md
 
+# Discovery engine logs
+_logs/
+
 # OS files
-.DS_Store
 .DS_Store

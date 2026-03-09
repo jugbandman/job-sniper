@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .alert-header {
+            background: linear-gradient(135deg, #ea4335, #fa6b4c);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .alert-icon { font-size: 40px; margin-bottom: 10px; }
+        .alert-title { font-size: 22px; font-weight: 600; margin-bottom: 5px; }
+        .alert-subtitle { font-size: 14px; opacity: 0.95; }
+        
+        .job-details {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { 
+            font-weight: 600; 
+            color: #1a73e8;
+            width: 120px;
+            flex-shrink: 0;
+        }
+        .detail-value { color: #333; }
+        
+        .score-highlight {
+            background: #34a853;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .cover-letter-snippet {
+            background: #f9f9f9;
+            border-left: 4px solid #1a73e8;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #1a73e8;
+            color: white;
+        }
+        .btn-secondary {
+            background: #f1f3f4;
+            color: #1a73e8;
+        }
+        
+        .footer {
+            font-size: 12px;
+            color: #999;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-header">
+        <div class="alert-icon">🔥</div>
+        <div class="alert-title">{{ job.company }}</div>
+        <div class="alert-subtitle">{{ job.title }}</div>
+    </div>
+    
+    <div class="score-highlight">
+        {{ "%.0f" | format(job.score) }}% Match - This is a strong fit!
+    </div>
+    
+    <div class="job-details">
+        <div class="detail-row">
+            <div class="detail-label">Title</div>
+            <div class="detail-value">{{ job.title }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Company</div>
+            <div class="detail-value">{{ job.company }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Location</div>
+            <div class="detail-value">{{ job.location }}</div>
+        </div>
+        {% if job.salary_range %}
+        <div class="detail-row">
+            <div class="detail-label">Salary</div>
+            <div class="detail-value">${{ job.salary_range }}</div>
+        </div>
+        {% endif %}
+        <div class="detail-row">
+            <div class="detail-label">Stage</div>
+            <div class="detail-value">{{ job.company_stage }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Posted</div>
+            <div class="detail-value">{{ job.posted_date }}</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Why You Match</div>
+        <p>{{ job.match_reason }}</p>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Generated Cover Letter (Preview)</div>
+        <div class="cover-letter-snippet">
+            {{ job.cover_letter_preview | truncate(300) }}
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Next Steps</div>
+        <p>Everything is ready for you to review and apply:</p>
+        <ul>
+            <li>Personalized cover letter (in full email or attached)</li>
+            <li>Outreach sequence (email + warm intro if available)</li>
+            <li>Company research + hiring manager info</li>
+        </ul>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="{{ job.url }}" class="btn btn-primary">View & Apply</a>
+        <a href="mailto:{{ email_to_review }}" class="btn btn-secondary">Review Materials</a>
+    </div>
+    
+    <div class="footer">
+        <p>This is a high-match opportunity sent in real-time by your Job Discovery system.</p>
+        <p>You'll also receive a daily digest with top 10 matches at 9:00 AM MT.</p>
+    </div>
+</body>
+</html>

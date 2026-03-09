@@ -1,0 +1,57 @@
+# Job Scoring Algorithm Weights
+# Adjust these to change priorities. Total should equal 1.0
+
+weights:
+  role_match: 0.30              # Leadership > Enterprise AE > Strategic AE > GTM
+  compensation: 0.20            # 300k+ = 100, 250-299k = 80, <250k = 0
+  company_stage: 0.15           # Series B+ = 100, A = 80, pre-seed = 40
+  market_position: 0.15         # PMF + market leadership = 100, emerging = 75
+  growth_opportunity: 0.10      # Hypergrowth = 100, steady = 75, declining = 0
+  gtm_complexity: 0.10          # Enterprise + technical = 100, mid-market = 80, SMB = 50
+
+# Hard Filters - Jobs that fail these are disqualified
+hard_filters:
+  min_compensation: 250000      # Disqualify anything below this
+  max_compensation: null        # No upper limit
+  locations_allowed:
+    - remote
+    - denver
+    - colorado
+    - hybrid-denver
+  industries_exclude:
+    - financial_services
+    - insurance
+    - accounting
+
+# Scoring Thresholds
+thresholds:
+  daily_digest_min_score: 50    # Only include in digest if >= 50
+  immediate_alert_min_score: 95 # Send real-time alert if >= 95
+  top_n_daily: 10               # Include top 10 in daily digest
+
+# Resume Picker Rules
+# These determine which resume is auto-selected for each job
+resume_picker:
+  growth_stage_hybrid:
+    company_stages: ["series_b", "series_c", "series_d"]
+    role_keywords: ["vp", "director", "head of", "leadership"]
+    company_size_min: 20
+    company_size_max: 500
+    
+  revenue_leader:
+    company_stages: ["late_stage", "public"]
+    role_keywords: ["vp", "chief revenue", "cro", "enterprise"]
+    company_size_min: 500
+    company_size_max: null
+    
+  early_stage_ae:
+    company_stages: ["seed", "series_a"]
+    role_keywords: ["account executive", "founding", "first", "founding ae"]
+    company_size_min: 1
+    company_size_max: 50
+    
+  founding_ae:
+    company_stages: ["pre_seed", "seed"]
+    role_keywords: ["founding", "co-founder", "first sales", "build"]
+    company_size_min: 1
+    company_size_max: 20
