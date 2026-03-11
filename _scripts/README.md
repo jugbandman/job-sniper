@@ -1,6 +1,70 @@
 # Automation Scripts
 
+## Alert Scanner (Background Gmail Job Discovery)
+
+The alert scanner runs multiple times per day via macOS launchd. It scans Gmail job alert emails, parses postings, scores them, writes a digest, and alerts Andy for Tier 1 matches.
+
+### Setup
+
+1. Make the runner script executable:
+   ```bash
+   chmod +x _scripts/run-alerts.sh
+   ```
+
+2. Edit the plist if your repo path differs:
+   ```bash
+   open _scripts/com.job-sniper.alerts.plist
+   ```
+
+3. Copy the plist to LaunchAgents:
+   ```bash
+   cp _scripts/com.job-sniper.alerts.plist ~/Library/LaunchAgents/
+   ```
+
+4. Load the agent:
+   ```bash
+   launchctl load ~/Library/LaunchAgents/com.job-sniper.alerts.plist
+   ```
+
+5. Verify it is loaded:
+   ```bash
+   launchctl list | grep job-sniper.alerts
+   ```
+
+### Manual Test Run
+
+```bash
+bash _scripts/run-alerts.sh
+```
+
+Check results:
+
+```bash
+cat _cache/logs/alerts-*.log
+```
+
+### Schedule
+
+Default schedule is 6 times daily:
+- 06:00
+- 09:00
+- 12:00
+- 15:00
+- 18:00
+- 21:00
+
+### Notes
+
+- The scanner depends on Gmail-capable tooling being available in the runtime.
+- Tier 1 notifications are currently routed through OpenClaw messaging.
+- Digest output path is controlled from `_config/user-profile.md`.
+
+
 Scripts for running Job Sniper agents in the background.
+
+This repo supports two scheduled flows:
+- `run-alerts.sh` for Gmail alert scanning and scoring
+- `run-watchlist.sh` for company career page monitoring
 
 ## Watchlist Agent (Background Job Checking)
 

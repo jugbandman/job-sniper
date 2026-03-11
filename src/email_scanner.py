@@ -1,6 +1,7 @@
 """Email Alert Scanner - parses job alert emails into Job objects"""
 
 import re
+import html
 import hashlib
 from datetime import datetime
 from typing import List, Dict, Optional
@@ -8,75 +9,73 @@ from .models import Job
 
 
 def parse_builtin_email(body: str, email_date: str) -> List[Job]:
-    """Parse a Built In job alert email body into Job objects.
+    """Parse a Built In HTML email into Job objects.
 
-    Built In format (plain text, jobs separated by company blocks):
-    "Company Name Title Location $min-$max"
-
-    Example body:
-    "Find top Jobs at Built In Job Preferences Director of Sales, Denver, CO, USA, Hybrid, In Office, Remote, Expert Level, Senior Level Zscaler Regional Sales Director, ZT Branch - Americas Hybrid and Remote USA $140,000-$200,000 Insider One Director of Sales, North America Remote United States..."
-
-    Strategy: Split on salary patterns and company boundaries to extract jobs.
+    Current Built In alerts are rich HTML emails where each job lives inside an
+    anchor tag pointing at a Built In job URL. Parsing the raw HTML as plain text
+    produces garbage, so this parser extracts jobs directly from the repeated
+    anchor blocks.
     """
     jobs = []
 
-    # Remove the header/preferences section
-    # Everything before the first actual job listing
-    text = body
-    # Remove "Find top Jobs at Built In Job Preferences..." header
-    header_match = re.search(r'Senior Level\s+', text)
-    if header_match:
-        text = text[header_match.end():]
+    # Find Built In job links and grab a bounded block around each one.
+    pattern = re.compile(
+        r'<a[^>]+href="(?P<href>https://[^"]*builtin\.com%2Fjob%2F[^"]+)"[^>]*>'
+        r'(?P<content>.*?)</a>',
+        re.IGNORECASE | re.DOTALL,
+    )
 
-    # Remove footer
-    footer_markers = ["Get More Recommendations", "© Built In", "Share your feedback", "Update Email Frequency"]
-    for marker in footer_markers:
-        idx = text.find(marker)
-        if idx > 0:
-            text = text[:idx]
-            break
+    for match in pattern.finditer(body):
+        href = html.unescape(match.group('href'))
+        content = match.group('content')
 
-    # Built In lists jobs in a pattern: Company Title Location [Salary]
-    # Split by salary pattern or double-space boundaries
-    # Pattern: jobs are separated and each has Company Name, then role title, then location, then optional salary
+        company_match = re.search(r'<div style=margin-bottom:8px;font-size:16px>(.*?)</div>', content, re.IGNORECASE | re.DOTALL)
+        title_match = re.search(r'<div style=margin-bottom:8px;font-size:20px;font-weight:700>(.*?)</div>', content, re.IGNORECASE | re.DOTALL)
 
-    # Try to extract jobs using salary as delimiter
-    # Salary pattern: $XXX,XXX-$XXX,XXX or $XXX,XXX
-    salary_pattern = r'\$[\d,]+-?\$?[\d,]*'
+        if not company_match or not title_match:
+            continue
 
-    # Split the text into segments - each segment ends with a salary or runs into the next company
-    segments = re.split(r'(?<=\d)\s+(?=[A-Z])', text)
+        company = _clean_html_text(company_match.group(1))
+        title = _clean_html_text(title_match.group(1))
+        if not company or not title:
+            continue
 
-    # Alternative approach: find all salary mentions and work backwards
-    salary_matches = list(re.finditer(salary_pattern, text))
+        loc_parts = re.findall(r'<span style=vertical-align:middle>(.*?)</span>', content, re.IGNORECASE | re.DOTALL)
+        loc_parts = [_clean_html_text(x) for x in loc_parts if _clean_html_text(x)]
+        location = ' | '.join(loc_parts[:2])
 
-    if salary_matches:
-        # Process segments between salaries
-        prev_end = 0
-        for match in salary_matches:
-            segment = text[prev_end:match.end()].strip()
-            if segment:
-                job = _parse_builtin_segment(segment, email_date)
-                if job:
-                    jobs.append(job)
-            prev_end = match.end()
+        salary_min = None
+        salary_max = None
+        salary_match = re.search(r'\$([\d,]+)\s*-\s*\$([\d,]+)', content)
+        if salary_match:
+            salary_min = int(salary_match.group(1).replace(',', ''))
+            salary_max = int(salary_match.group(2).replace(',', ''))
+        else:
+            single_salary = re.search(r'\$([\d,]+)', content)
+            if single_salary:
+                salary_min = int(single_salary.group(1).replace(',', ''))
+                salary_max = salary_min
 
-        # Handle last segment (after last salary, might be a job without salary)
-        remaining = text[prev_end:].strip()
-        if remaining and len(remaining) > 10:
-            job = _parse_builtin_segment(remaining, email_date)
-            if job:
-                jobs.append(job)
-    else:
-        # No salaries found - try to split by known patterns
-        # Each job typically starts with a company name
-        lines = [l.strip() for l in text.split('\n') if l.strip()]
-        for line in lines:
-            job = _parse_builtin_segment(line, email_date)
-            if job:
-                jobs.append(job)
+        clean_url = _clean_builtin_tracking_url(href)
+        job_id = hashlib.md5(f"builtin:{company}:{title}".lower().encode()).hexdigest()[:12]
 
-    return jobs
+        jobs.append(Job(
+            job_id=job_id,
+            title=title,
+            company=company,
+            url=clean_url,
+            source='builtin',
+            posted_date=email_date,
+            salary_min=salary_min,
+            salary_max=salary_max,
+            location=location,
+            description='',
+            company_stage=None,
+            company_size=None,
+            industry=None,
+        ))
+
+    return _dedupe_jobs(jobs)
 
 
 def _parse_builtin_segment(segment: str, email_date: str) -> Optional[Job]:
@@ -159,19 +158,13 @@ def _parse_builtin_segment(segment: str, email_date: str) -> Optional[Job]:
 
 
 def parse_linkedin_email(body: str, email_date: str) -> List[Job]:
-    """Parse a LinkedIn job alert email body into Job objects.
-
-    LinkedIn format (plain text, jobs separated by dashes):
-    Title
-    Company
-    Location
-    [X connections]
-    View job: https://www.linkedin.com/comm/jobs/view/JOBID?...
-    ---------------------------------------------------------
-    """
+    """Parse a LinkedIn job alert email body into Job objects."""
     jobs = []
 
-    # Split on the separator line
+    # Ignore account-management emails like "your job alert has been created"
+    if 'your job alert has been created' in body.lower():
+        return []
+
     sections = re.split(r'-{10,}', body)
 
     for section in sections:
@@ -179,32 +172,27 @@ def parse_linkedin_email(body: str, email_date: str) -> List[Job]:
         if not section or 'View job' not in section:
             continue
 
-        # Extract the job URL
         url_match = re.search(r'View job:\s*(https://www\.linkedin\.com/comm/jobs/view/(\d+)\S*)', section)
         if not url_match:
             continue
 
-        url = url_match.group(1)
         linkedin_job_id = url_match.group(2)
-
-        # Get the text before the URL
         pre_url = section[:url_match.start()].strip()
         lines = [l.strip() for l in pre_url.split('\n') if l.strip()]
-
-        # Remove noise lines
         lines = [l for l in lines if not l.startswith('This company is actively')
-                 and not re.match(r'^\d+ connections?$', l)]
+                 and not re.match(r'^\d+ connections?$', l)
+                 and 'job alert' not in l.lower()]
 
         if len(lines) < 2:
             continue
 
         title = lines[0]
         company = lines[1]
+        if 'you’ll receive notifications' in company.lower() or "you'll receive notifications" in company.lower():
+            continue
         location = lines[2] if len(lines) > 2 else ""
 
-        # Clean the URL to just the base job link
         clean_url = f"https://www.linkedin.com/jobs/view/{linkedin_job_id}"
-
         job_id = hashlib.md5(f"linkedin:{linkedin_job_id}".encode()).hexdigest()[:12]
 
         jobs.append(Job(
@@ -370,6 +358,36 @@ def _parse_wtj_html(body: str, email_date: str) -> List[Job]:
         job_idx += 1
 
     return jobs
+
+
+def _clean_html_text(text: str) -> str:
+    text = re.sub(r'<[^>]+>', ' ', text)
+    text = html.unescape(text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
+def _clean_builtin_tracking_url(url: str) -> str:
+    url = html.unescape(url)
+    m = re.search(r'https:%2F%2Fbuiltin\.com%2Fjob%2F[^\s"<>]+', url, re.IGNORECASE)
+    if m:
+        clean = m.group(0)
+        clean = clean.replace('https:%2F%2F', 'https://').replace('%2F', '/').replace('%3F', '?')
+        clean = clean.split('?')[0]
+        return clean
+    return ''
+
+
+def _dedupe_jobs(jobs: List[Job]) -> List[Job]:
+    seen = set()
+    out = []
+    for job in jobs:
+        key = (job.company.strip().lower(), job.title.strip().lower())
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(job)
+    return out
 
 
 def parse_email(sender: str, body: str, email_date: str, subject: str = "") -> List[Job]:

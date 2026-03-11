@@ -1,5 +1,6 @@
 # Personal config (use user-profile.example.md as template)
 _config/user-profile.md
+_config/user-preferences.md
 
 # Personal materials
 _templates/linkedin-contacts.csv
@@ -27,6 +28,9 @@ _cache/*
 
 # Discovery engine logs
 _logs/
+
+# Local machine helpers / prototypes
+scripts_scan_alerts.py
 
 # OS files
 .DS_Store

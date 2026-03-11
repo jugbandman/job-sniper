@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.job-sniper.alerts</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>REPLACE_WITH_YOUR_JOB_SNIPER_PATH/_scripts/run-alerts.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>REPLACE_WITH_YOUR_JOB_SNIPER_PATH</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>JOB_SNIPER_DIR</key>
+    <string>REPLACE_WITH_YOUR_JOB_SNIPER_PATH</string>
+    <key>TARGET_CHAT_ID</key>
+    <string>REPLACE_WITH_YOUR_CHAT_ID</string>
+    <key>TARGET_CHANNEL</key>
+    <string>telegram</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/job-sniper-alerts.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/job-sniper-alerts.error.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
+</dict>
+</plist>

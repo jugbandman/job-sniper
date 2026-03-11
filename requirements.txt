@@ -1,7 +1,7 @@
 # Job Discovery System Requirements
 
 # Core
-python>=3.10
+# Requires Python 3.10+
 
 # Configuration
 pyyaml>=6.0
