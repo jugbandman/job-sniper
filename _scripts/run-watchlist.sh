@@ -1,12 +1,14 @@
 #!/bin/bash
 # Job Sniper Watchlist Agent - Background Runner
 # Called by launchd on schedule. Runs the watchlist agent headlessly.
+# Loads vault context bundle for writing style and rule compliance.
 
 set -euo pipefail
 
 # Configuration
 REPO_DIR="${JOB_SNIPER_DIR:-$HOME/Documents/Coding/job-sniper}"
 AGENT_FILE="$REPO_DIR/_agents/watchlist-agent.md"
+CONTEXT_BUNDLE="$REPO_DIR/_config/vault-context-bundle.md"
 LOG_DIR="$REPO_DIR/_cache/logs"
 CLAUDE_BIN="${CLAUDE_BIN:-$HOME/.local/bin/claude}"
 MODEL="${JOB_SNIPER_MODEL:-haiku}"
@@ -37,6 +39,24 @@ if ! command -v "$CLAUDE_BIN" &> /dev/null; then
     exit 1
 fi
 
+# Build prompt with context bundle prefix
+PROMPT=""
+if [ -f "$CONTEXT_BUNDLE" ]; then
+    PROMPT="## Vault Context (follow these rules for all output)
+
+$(cat "$CONTEXT_BUNDLE")
+
+---
+
+## Agent Task
+
+"
+    echo "Context bundle loaded ($(wc -l < "$CONTEXT_BUNDLE") lines)" >> "$LOG_FILE"
+else
+    echo "WARNING: No context bundle at $CONTEXT_BUNDLE, running without vault rules" >> "$LOG_FILE"
+fi
+PROMPT+="$(cat "$AGENT_FILE")"
+
 # Run the agent
 cd "$REPO_DIR"
 
@@ -46,7 +66,7 @@ cd "$REPO_DIR"
     --allowedTools "Read,Write,WebFetch,WebSearch,Bash(cat:*),Bash(date:*),Bash(mkdir:*)" \
     --no-session-persistence \
     --max-budget-usd "$MAX_BUDGET" \
-    "$(cat "$AGENT_FILE")" \
+    "$PROMPT" \
     >> "$LOG_FILE" 2>&1
 
 EXIT_CODE=$?

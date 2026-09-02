@@ -52,6 +52,16 @@ A reference for how the agents should write cover letters. Based on the principl
 
 ---
 
+## Hard Rules (Non-Negotiable)
+
+- **No double dashes (--) or em-dashes** anywhere. Use commas, parentheses, or restructure the sentence.
+- **No generic openers** like "Revenue leader with a track record of..." Start with something that sounds like a person.
+- **Short sentences land harder than long clauses.** Break them up.
+- **Say what you won't do.** "Not interested in managing dashboards" is more memorable than listing what you will do.
+- **Voice calibration:** Before writing, compare to Andy's existing TLDR. If it sounds more polished than that, it's too corporate.
+
+---
+
 ## What to Avoid
 
 ### Too Formal

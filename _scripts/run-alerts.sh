@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
 JOB_SNIPER_DIR="${JOB_SNIPER_DIR:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 LOG_DIR="$JOB_SNIPER_DIR/_cache/logs"
 PROMPT_FILE="$JOB_SNIPER_DIR/_agents/job-alerts/scanner.md"
+CONTEXT_BUNDLE="$JOB_SNIPER_DIR/_config/vault-context-bundle.md"
 OPENCLAW_BIN="${OPENCLAW_BIN:-$(command -v openclaw)}"
 TARGET_CHAT_ID="${TARGET_CHAT_ID:-8143350442}"
 TARGET_CHANNEL="${TARGET_CHANNEL:-telegram}"
@@ -18,7 +19,21 @@ if [[ ! -f "$PROMPT_FILE" ]]; then
   exit 1
 fi
 
-MESSAGE=$(cat "$PROMPT_FILE")
+# Build message with context bundle prefix
+MESSAGE=""
+if [[ -f "$CONTEXT_BUNDLE" ]]; then
+  MESSAGE="## Vault Context (follow these rules for all output)
+
+$(cat "$CONTEXT_BUNDLE")
+
+---
+
+## Agent Task
+
+"
+  echo "[$(date -Iseconds)] context bundle loaded" >> "$LOG_FILE"
+fi
+MESSAGE+="$(cat "$PROMPT_FILE")"
 
 {
   echo "[$(date -Iseconds)] starting job alert scan"
