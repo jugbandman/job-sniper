@@ -34,3 +34,7 @@ scripts_scan_alerts.py
 
 # OS files
 .DS_Store
+
+# Python bytecode cache
+__pycache__/
+*.pyc
