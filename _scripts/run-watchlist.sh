@@ -6,7 +6,7 @@
 set -euo pipefail
 
 # Configuration
-REPO_DIR="${JOB_SNIPER_DIR:-$HOME/Documents/Coding/job-sniper}"
+REPO_DIR="${JOB_SNIPER_DIR:-$HOME/Developer/job-sniper}"
 AGENT_FILE="$REPO_DIR/_agents/watchlist-agent.md"
 CONTEXT_BUNDLE="$REPO_DIR/_config/vault-context-bundle.md"
 LOG_DIR="$REPO_DIR/_cache/logs"

@@ -129,7 +129,7 @@ The shell script reads environment variables for customization. Set these in the
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `JOB_SNIPER_DIR` | `~/Documents/Coding/job-sniper` | Repo location |
+| `JOB_SNIPER_DIR` | `~/Developer/job-sniper` | Repo location |
 | `CLAUDE_BIN` | `~/.local/bin/claude` | Claude binary path |
 | `JOB_SNIPER_MODEL` | `haiku` | Model to use (haiku recommended for cost) |
 | `JOB_SNIPER_MAX_BUDGET` | `0.50` | Max spend per run in USD |

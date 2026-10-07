@@ -15,23 +15,23 @@ Job alert emails go to `andrewdcarlson@gmail.com`. Always use this as `user_goog
 
 ## Key Paths
 
-- **Tool repo:** `~/Documents/Coding/job-sniper/`
-- **Config:** `~/Documents/Coding/job-sniper/_config/user-profile.md`
-- **Agent prompts:** `~/Documents/Coding/job-sniper/_agents/job-search/`
-- **Setup agent:** `~/Documents/Coding/job-sniper/_agents/setup.md`
+- **Tool repo:** `~/Developer/job-sniper/`
+- **Config:** `~/Developer/job-sniper/_config/user-profile.md`
+- **Agent prompts:** `~/Developer/job-sniper/_agents/job-search/`
+- **Setup agent:** `~/Developer/job-sniper/_agents/setup.md`
 - **Materials (Obsidian):** `80-Projects/job-search/Job Search, Data/`
 - **Materials (legacy):** `~/Documents/Job Search 2025/`
 - **Output destination:** Read from user-profile.md `## Output Path` section
-- **Job tracker:** `~/Documents/Coding/job-sniper/job-applications-tracker.csv`
-- **Alert scanner:** `~/Documents/Coding/job-sniper/_agents/job-alerts/scanner.md`
-- **Alert sources:** `~/Documents/Coding/job-sniper/_config/alert-sources.md`
+- **Job tracker:** `~/Developer/job-sniper/job-applications-tracker.csv`
+- **Alert scanner:** `~/Developer/job-sniper/_agents/job-alerts/scanner.md`
+- **Alert sources:** `~/Developer/job-sniper/_config/alert-sources.md`
 - **Alert digests:** `80-Projects/job-search/_digests/` (in Obsidian vault)
 
 ## On Invocation
 
 **Step 1: Check if configured**
 
-Read `~/Documents/Coding/job-sniper/_config/user-profile.md`.
+Read `~/Developer/job-sniper/_config/user-profile.md`.
 
 - If it **does not exist** or contains only placeholder values like `{add value}` → go to **First-Time Setup**
 - If it **exists and is populated** → go to **Mode Selection**
@@ -49,7 +49,7 @@ Verify these exist. Report status for each:
 ```
 Checking prerequisites...
 
-[✓/✗] Tool repo cloned at ~/Documents/Coding/job-sniper/
+[✓/✗] Tool repo cloned at ~/Developer/job-sniper/
 [✓/✗] Resume file found (check _templates/resumes/ for PDFs and markdown)
 [✓/✗] Cover letter style guide (_templates/cover-letter-style-guide.md)
 [✓/✗] LinkedIn contacts CSV (_templates/linkedin-contacts.csv)
@@ -57,7 +57,7 @@ Checking prerequisites...
 
 For any missing items:
 
-- **Repo not found:** Tell them to clone it: `git clone https://github.com/jugbandman/job-sniper.git ~/Documents/Coding/job-sniper/`
+- **Repo not found:** Tell them to clone it: `git clone https://github.com/jugbandman/job-sniper.git ~/Developer/job-sniper/`
 - **Resume missing:** Search common locations (`~/Documents/`, `~/Desktop/`, `~/Downloads/`) for PDF resumes. If found, offer to copy to `_templates/resumes/`. If not found, note placeholder and continue.
 - **Style guide missing:** Not critical, defaults work fine. Note it.
 - **LinkedIn CSV missing:** Optional. Explain how to export from LinkedIn Settings > Data Privacy > Get a copy of your data. Note as optional and continue.
@@ -80,7 +80,7 @@ Report what was found and offer to copy relevant files to `_templates/`.
 
 ### 3. Run Setup Interview
 
-Read the setup agent prompt from `~/Documents/Coding/job-sniper/_agents/setup.md` and execute it. This collects:
+Read the setup agent prompt from `~/Developer/job-sniper/_agents/setup.md` and execute it. This collects:
 
 - Basic info (name, email, location)
 - Professional background (roles, metrics, strengths)
@@ -131,17 +131,17 @@ When the user is already configured. Parse the invocation argument:
 → Show Tier 1 and Tier 2 matches with action links
 
 **If "alerts run" was passed** (e.g., `/job-sniper alerts run`):
-→ Execute the alert scanner agent at `~/Documents/Coding/job-sniper/_agents/job-alerts/scanner.md`
+→ Execute the alert scanner agent at `~/Developer/job-sniper/_agents/job-alerts/scanner.md`
 → This triggers a manual Gmail scan, scores new postings, writes a digest
 → Show results when complete
 
 **If "response-watch" was passed** (e.g., `/job-sniper response-watch`):
-→ Execute the response watch agent at `~/Documents/Coding/job-sniper/_agents/job-discovery/response-watch.md`
+→ Execute the response watch agent at `~/Developer/job-sniper/_agents/job-discovery/response-watch.md`
 → Scans Gmail for replies from companies in your active pipeline (last 24 hours)
 → Sends Slack DM for any matches found, prints summary
 
 **If "build-watchlist" was passed** (e.g., `/job-sniper build-watchlist`):
-→ Execute the watchlist builder agent at `~/Documents/Coding/job-sniper/_agents/job-discovery/build-watchlist.md`
+→ Execute the watchlist builder agent at `~/Developer/job-sniper/_agents/job-discovery/build-watchlist.md`
 → Researches competitors, adjacent markets, and unconventional role titles
 → Proposes additions to `_config/company-watchlist.yaml` and confirms before writing
 
@@ -220,7 +220,7 @@ For each mode, read the corresponding agent prompt, load the user's config, and 
 
 ### Response Watch Mode
 
-1. Read `~/Documents/Coding/job-sniper/_agents/job-discovery/response-watch.md`
+1. Read `~/Developer/job-sniper/_agents/job-discovery/response-watch.md`
 2. Execute the agent headlessly (no user prompts needed)
 3. Agent reads job-tracker.md + Obsidian applying/interviewing folders to build company list
 4. Searches Gmail for replies from those companies (last 24 hours)
@@ -229,7 +229,7 @@ For each mode, read the corresponding agent prompt, load the user's config, and 
 
 ### Build Watchlist Mode
 
-1. Read `~/Documents/Coding/job-sniper/_agents/job-discovery/build-watchlist.md`
+1. Read `~/Developer/job-sniper/_agents/job-discovery/build-watchlist.md`
 2. Read `_config/user-profile.md` for background context
 3. Read `_config/company-watchlist.yaml` (create from example if missing)
 4. Agent researches competitors, adjacent markets, and unconventional role titles
@@ -277,7 +277,7 @@ Want to research any of these? (enter numbers, "all", or "skip")
 
 ## Activity Log
 
-Maintain `job-tracker.md` in the CRA repo root (`~/Documents/Coding/job-sniper/job-tracker.md`) as a running log of all job search activity. This file is gitignored (personal data).
+Maintain `job-tracker.md` in the CRA repo root (`~/Developer/job-sniper/job-tracker.md`) as a running log of all job search activity. This file is gitignored (personal data).
 
 ### Format
 
