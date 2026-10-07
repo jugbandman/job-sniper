@@ -211,7 +211,7 @@ Save all files to the output path from `_config/user-profile.md`, substituting `
 - `competitive-intelligence.md` (if Deep)
 
 ### Step 3.5: Update Job Tracker
-Append a new row to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`:
+Append a new row to `~/Developer/company-research-assistant/job-applications-tracker.csv`:
 
 **CSV Columns**:
 ```

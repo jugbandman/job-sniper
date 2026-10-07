@@ -228,7 +228,7 @@ Launch these agents in parallel using the Task tool:
 
 After saving all research files, append a new row to the job applications tracker CSV.
 
-**Tracker Location**: `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`
+**Tracker Location**: `~/Developer/company-research-assistant/job-applications-tracker.csv`
 
 **CSV Columns** (in order):
 ```

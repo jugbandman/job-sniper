@@ -14,7 +14,7 @@
 
 ### Step 1: Read profile and current watchlist
 
-Read `~/Documents/Coding/job-sniper/_config/user-profile.md`.
+Read `~/Developer/job-sniper/_config/user-profile.md`.
 
 Extract:
 - Past employers and industries
@@ -22,7 +22,7 @@ Extract:
 - Location preference
 - Compensation target
 
-Read `~/Documents/Coding/job-sniper/_config/company-watchlist.yaml` (or the example if it doesn't exist yet). Note how many companies are in each tier.
+Read `~/Developer/job-sniper/_config/company-watchlist.yaml` (or the example if it doesn't exist yet). Note how many companies are in each tier.
 
 Also read the Obsidian job search persona if available (see path above).
 
@@ -111,7 +111,7 @@ Ask: "Want me to update the watchlist with these additions? You can also tell me
 
 ### Step 6: Write updated watchlist
 
-After confirmation, write the updated watchlist to `~/Documents/Coding/job-sniper/_config/company-watchlist.yaml`.
+After confirmation, write the updated watchlist to `~/Developer/job-sniper/_config/company-watchlist.yaml`.
 
 Format for each tier:
 
@@ -159,7 +159,7 @@ New additions:
 - CompanyB (Tier 2, Series C, 1200 employees, analytics)
 ...
 
-Config saved to: ~/Documents/Coding/job-sniper/_config/company-watchlist.yaml
+Config saved to: ~/Developer/job-sniper/_config/company-watchlist.yaml
 
 Next: Run /job-sniper alerts run to start scanning for new postings from these companies.
 ```

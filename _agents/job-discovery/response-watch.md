@@ -22,7 +22,7 @@ Pull active company names from two sources:
 
 **Source A - job-tracker.md:**
 
-Read `~/Documents/Coding/job-sniper/job-tracker.md`. Find all rows with Status containing "Researched", "Applied", "Outreach Sent", or "Interview". Extract the Company column from each row.
+Read `~/Developer/job-sniper/job-tracker.md`. Find all rows with Status containing "Researched", "Applied", "Outreach Sent", or "Interview". Extract the Company column from each row.
 
 **Source B - Obsidian job-search folders:**
 
@@ -36,7 +36,7 @@ ls ~/Documents/Obsidian\ Vault/80-Projects/job-search/interviewing/ 2>/dev/null
 **Source C - JSONL scored jobs cache:**
 
 ```bash
-cd ~/Documents/Coding/job-sniper && python3 -c "
+cd ~/Developer/job-sniper && python3 -c "
 from src.storage import Storage
 s = Storage()
 jobs = s.load_jobs()
@@ -58,7 +58,7 @@ For each company name, derive likely email domains:
 Use the Python domain extractor if available:
 
 ```bash
-cd ~/Documents/Coding/job-sniper && python3 -c "
+cd ~/Developer/job-sniper && python3 -c "
 from src.response_scanner import extract_company_domains
 import json
 companies = $(python3 -c "import sys; print(sys.argv[1])" '[LIST_OF_COMPANIES]')

@@ -54,7 +54,7 @@ Write the collected emails to `/tmp/job-sniper-emails.json` as JSON array object
 Then run:
 
 ```bash
-cd /Users/openclaw/Documents/Coding/job-sniper && source .venv/bin/activate && python3 -c "
+cd /Users/openclaw/Developer/job-sniper && source .venv/bin/activate && python3 -c "
 import json
 from src.email_scanner import parse_email
 

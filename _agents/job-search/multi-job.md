@@ -318,7 +318,7 @@ Save to the output path from `_config/user-profile.md`, substituting `[COMPANY_N
 
 ## Job Tracker Update (Step 5)
 
-Append a row for the **recommended role** to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`:
+Append a row for the **recommended role** to `~/Developer/company-research-assistant/job-applications-tracker.csv`:
 
 **CSV Columns**:
 ```

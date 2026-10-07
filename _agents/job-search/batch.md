@@ -142,7 +142,7 @@ Full cover letter following the candidate's style guide.
 Customized Summary paragraph based on the selected resume template. Read `_templates/resume-tldr-template.md` for the templates.
 
 **2f. Update Tracker CSV**
-Append row to `~/Documents/Coding/company-research-assistant/job-applications-tracker.csv`
+Append row to `~/Developer/company-research-assistant/job-applications-tracker.csv`
 
 ### Step 3: Batch Summary
 
