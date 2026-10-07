@@ -8,11 +8,11 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/andycarlson/Documents/Coding/job-sniper/_scripts/run-watchlist.sh</string>
+        <string>/Users/andycarlson/Developer/job-sniper/_scripts/run-watchlist.sh</string>
     </array>
 
     <key>WorkingDirectory</key>
-    <string>/Users/andycarlson/Documents/Coding/job-sniper</string>
+    <string>/Users/andycarlson/Developer/job-sniper</string>
 
     <key>StartCalendarInterval</key>
     <dict>
