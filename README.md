@@ -405,3 +405,7 @@ It works because it treats job search like a sales process: research deeply, per
 ---
 
 Useful? Buy Andy a coffee (or beer): **venmo:@jugbandman**
+
+## License
+
+MIT. See [LICENSE](./LICENSE).
